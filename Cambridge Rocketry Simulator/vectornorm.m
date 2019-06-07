@@ -14,14 +14,16 @@
 %## along with this program; if not, write to the Free Software
 %## Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-%## stop3.m
+%## vectornorm.m
 
 %## Author: S. Box
 %## Created: 2008-05-08
 
-function [veve, vterm, vdir] = stop3(tt,z);
-
-  veve = (z(3)-0.2); %variable where we are looking for a zero
-  vterm = 1;    %'1' means terminate if variable is found  
-  vdir = -1;    %'-1' means direction of crossing to trigger termination
-
+function [a]=vectornorm(b)
+bmag=vectormag(b);
+sb=size(b);
+if bmag==0
+    a=zeros(sb(1),sb(2));
+else
+    a=b./bmag;
+end

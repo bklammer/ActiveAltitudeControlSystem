@@ -19,7 +19,7 @@
 %## Author: S.Box
 %## Created: 2008-05-27
 
-function varargout=rocketflight(varargin);
+function varargout=rocketflight(varargin)
 warning off
 tic
 INTAB1=varargin{1}{1};

@@ -12,6 +12,7 @@ function Template1St()
   RailDeclination=0; %Angle of declination of the launching rail in degrees
   RailBearing=0;     %Bearing of the launching rail in degrees from true north
   
+  figure
   
   %%Run the rocket flight simulator%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   

@@ -19,7 +19,7 @@
 %## Author: S. Box
 %## Created: 2008-05-08
 
-function [veve, vterm, vdir] = stop1(tt,z);
+function [veve, vterm, vdir] = stop1(tt,z)
 
   veve = (z(10)-0.001); %variable where we are looking for a zero
   vterm = 1;    %'1' means terminate if variable is found  
