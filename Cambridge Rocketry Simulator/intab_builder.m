@@ -20,7 +20,7 @@
 %## Created: 2008-05-27
 
 
-function INTAB=intab_builder(varargin);
+function INTAB=intab_builder(varargin)
 
 nstage=0;
 
@@ -44,11 +44,11 @@ Mtab=[];
 Lbody=[];
 paratab=[];
 
-for i=1:nargin;
+for i=1:nargin
     label=varargin{i}{1};
 
 
-    switch label;
+    switch label
         case 'nose'
             name=varargin{i}{1};
             shape=varargin{i}{2};
@@ -88,8 +88,8 @@ for i=1:nargin;
             Mtab(end+1)=M;
 
 
-            switch body;
-                case 'yes';
+            switch body
+                case 'yes'
                     Lbody(end+1)=L;
                     dbase(1:2,end+1)=[X Od];
             end
@@ -102,7 +102,7 @@ for i=1:nargin;
             M=varargin{i}{5};
             X=varargin{i}{6};
 
-            switch body;
+            switch body
                 case 'yes'
                     Lbody(end+1)=L;
                     dbase(1:2,end+1)=[X d];
@@ -137,7 +137,7 @@ for i=1:nargin;
 
             com1{end+1}=[M (X+L/2)];
 
-            if Ud>Dd;
+            if Ud>Dd
                 lt=L;
             end
 
@@ -162,7 +162,7 @@ for i=1:nargin;
 
 
 
-        case 'finset';
+        case 'finset'
             name=varargin{i}{1};
             n=varargin{i}{2};
             a=varargin{i}{3};
@@ -251,13 +251,13 @@ Recrit=5E5;
 ir=2;
 Rebt(1)=1;
 Rebb=Rebt(1);
-while Rebb<=100000;
+while Rebb<=100000
     Rebt(ir)=Rebt(ir-1)*10^(1/2);
     Rebb=Rebt(ir);
     ir=ir+1;
 end
 
-while Rebb<10000000;
+while Rebb<10000000
     Rebt(ir)=Rebt(ir-1)*10^(1/6);
     Rebb=Rebt(ir);
     ir=ir+1;
@@ -268,8 +268,8 @@ alphat=[0:0.02:0.16];
 sRebt=size(Rebt);
 salphat=size(alphat);
 
-for i1=1:sRebt(2);
-    for i2=1:salphat(2);
+for i1=1:sRebt(2)
+    for i2=1:salphat(2)
 
         CDtab(i2,i1)=drag_datcom(Ltb,Rebt(i1),Recrit,alphat(i2),B1,fins1{:});
     end
@@ -300,14 +300,14 @@ M=ttdat(:,3);
 
 sttdat=size(ttdat);
 
-for i=1:sttdat(1);
+for i=1:sttdat(1)
     Motcom=[M(i) (X+L/2)];
     Xcm(i)=axi_com(Motcom,com1{:});
 
 
     smomin1=size(momin1);
     momin1new=momin1;
-    for i2=1:smomin1(2);
+    for i2=1:smomin1(2)
 
         momin1new{i2}{2}(end)=abs(Xcm(i)-momin1new{i2}{2}(end));
     end
@@ -335,7 +335,7 @@ catch
     
     smomin1=size(momin1);
     momin1new=momin1;
-    for i2=1:smomin1(2);
+    for i2=1:smomin1(2)
 
         momin1new{i2}{2}(end)=abs(Xcm-momin1new{i2}{2}(end));
     end

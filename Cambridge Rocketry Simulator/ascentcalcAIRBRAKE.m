@@ -25,6 +25,7 @@
 
 function [tt,z]=ascentcalcAIRBRAKE(varargin)
 
+plot = 0;
 ttspan=varargin{1}; % Interval of integration
 z0=varargin{2};     % Initial conditions (position, orientation, momentum)
 YA0=varargin{3};    % Initial yaw axis angle
@@ -301,6 +302,23 @@ end
             alphacp=acos(dprod);
         end
         
+        
+        %%%%%% AIRBRAKE CALCULATIONS %%%%%%%
+        state.plot = plot;
+        plot = plot + 1;
+        state.tt = tt; % current time
+        state.thrust = Ti; % current thrust
+        state.Cd = Cd; % estimated drag coefficient
+        state.alt = zn; % current altitude
+        state.vel = Ut(3); % current vertical velocity
+        state.m = Mi; % [kg] mass of rocket after burnout
+        state.rho = rho; % [kg/m^3] density of air
+        state.A_ref = Ar; % [m^2] reference area
+        state.g = 9.81; % [m/s^2] acceleration due to gravity
+        
+        Cd = AIRBRAKE(state);
+        
+        
         %Force vector calculations*******************************************
         %OLD and wrong: FA=Cd*0.5*rho*Utmag^2*Ar;%Calculate Axial drag
         FA=Cd*0.5*rho*(Vcptmag^2)*Ar*cos(alphacp);%Calculate Axial drag
@@ -376,15 +394,15 @@ end
         
         zd=zeros(13,1);
         
-        % See how the predictor does
-        theta = quat2eul(qt); % Find angles
-        pos = [zn theta(1)]; % Position
-        vel = [sqrt(Ut(1)^2+Ut(2)^2), Ut(3), sqrt(omegat(1)^2+omegat(2)^2)]; % max horizontal velocity and max horizontal rotation are unlikely to be aligned, but oh well
-        I = (Ixxi+Iyyi)/2; % Average two longitudinal moments of inertia
-        apogee = predictor3DOF(pos, vel, Cd, Cn, Xbar, Mi, I, Ar, temp, Pressure);
-        
-        scatter(tt, apogee)
-        hold on
+%         % See how the 3DOF predictor does
+%         theta = quat2eul(qt); % Find angles
+%         pos = [zn theta(1)]; % Position
+%         vel = [sqrt(Ut(1)^2+Ut(2)^2), Ut(3), sqrt(omegat(1)^2+omegat(2)^2)]; % max horizontal velocity and max horizontal rotation are unlikely to be aligned, but oh well
+%         I = (Ixxi+Iyyi)/2; % Average two longitudinal moments of inertia
+%         apogee = predictor3DOF(pos, vel, Cd, Cn, Xbar, Mi, I, Ar, temp, Pressure);
+%         
+%         scatter(tt, apogee)
+%         hold on
         
         %ODE output
         zd(1)=xdot;

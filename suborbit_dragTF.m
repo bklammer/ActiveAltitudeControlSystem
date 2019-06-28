@@ -99,7 +99,7 @@ launchAlt = 1400;   % Launch altitude in meters (Spaceport America)
         
         air_brake_drag = [NaN(size(alt1));air_brake_drag];
         alt = [alt1;alt2]; vel = [vel1;vel2]; accel = [accel1;accel2];
-        alt = alt-launchAlt;
+        alt = alt-launchAlt
         TC2 = 0; TC3 = 0;
 %     case 2  % two stages
 %         if length(varargin) == 5
