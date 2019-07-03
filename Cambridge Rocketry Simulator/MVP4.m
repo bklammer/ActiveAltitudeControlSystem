@@ -20,7 +20,7 @@ function MVP4()
 % c1 = {'cylinder','yes',L,d,M,X};
 % 
 % % Centre of gravity definition
-% M = 11.6; % [kg] mass of rocket (unloaded)
+% M = 13.5; % [kg] mass of rocket (unloaded)
 % Xr = 0; % [m] radial position of point mass
 % Xl = 1.06; % [m] longitudinal position of point mass
 % pm1 = {'pm', M, Xr, Xl};
@@ -49,10 +49,10 @@ function MVP4()
 % 
 % % Input table builder
 % INTAB = intab_builder(n1,c1,pm1,f1,Motor);
-%
+% 
 % % Generate atmospheric data based on ISA and current T, P
-% T0 = 309; % [K] Temperature at launch site (MVP-1 data)
-% P0 = 86315; % [Pa] Pressure at launch site (MVP-1 data)
+% T0 = 318; % [K] Temperature at launch site (MVP-2 data)
+% P0 = 86037; % [Pa] Pressure at launch site (MVP-2 data)
 % g = 9.80665; % [m/s^2] acceleration due to gravity
 % R = 287.0531; % [J/kgK] gas constant for dry air
 % lapseRate = -0.00649; % [K/m] temperature lapse rate with altitude (ISA)
@@ -71,14 +71,14 @@ function MVP4()
 
 %%% Load the input data
 load 'intab_MVP4_L1685.mat'; % Loads the rocket data into a variable called INTAB
-load 'intab4_MVP1data_ISA_nowind.mat'; % Loads the atmospheric data into a variable called INTAB4
+load 'intab4_MVP2data_ISA_nowind.mat'; % Loads the atmospheric data into a variable called INTAB4
 
 %%% Launch site inputs
-RailLength = 3.7;    % Length of the launching rail in meters
+RailLength = 4.3;    % Length of the launching rail in meters (based on launch lug position and ESRA-provided rail)
 RailDeclination = 6; % Angle of declination of the launching rail in degrees
 RailBearing = 0;     % Bearing of the launching rail in degrees from true north
 
-figure
+% figure
 % xlabel('Time (s)')
 % ylabel('Drag Coefficient')
 % title('Control Signal')

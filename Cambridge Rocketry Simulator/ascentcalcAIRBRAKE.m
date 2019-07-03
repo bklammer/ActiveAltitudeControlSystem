@@ -36,7 +36,7 @@ INTAB2=varargin{7}; % Drag coefficients
 INTAB3=varargin{8}; % Normal coefficient and center of pressure
 INTAB4=varargin{9}; % Atmosphere model
 Ar=varargin{10};    % Aerodynamic Reference Area
-RL=varargin{11};    % Maximum distance from starting point?
+RL=varargin{11};    % Launch rail length
 Ra=varargin{12};    % Not used
 mu=varargin{13};    % Dynamic viscosity of air
 RBL=varargin{14};   % Characteristic length (Reynolds number)
@@ -210,29 +210,29 @@ end
         
         Re=rho*Utmag*RBL/mu;%Calculate Reynolds number
         
-        %EXTRACT DATA FROM INPUT TABLES 2 and 3***********************************
-        %INTAB2*******************************************************************
-        an=INTAB2(2:end,1);%Get CD from table
-        Ren=INTAB2(1,2:end);
-        Cddat=INTAB2(2:end,2:end);
-        
-        if alpha<an(end) && alpha>=0 && Re>=Ren(1) && Re<Ren(end)
-            Cd=interp2(Ren,an,Cddat,Re,alpha);
-        elseif alpha<an(end) && alpha>=0 && Re>=Ren(end)
-            Cd=interp1(an,Cddat(:,end),alpha);
-        elseif alpha<an(end) && alpha>=0 && Re>=0 && Re<Ren(1)
-            Cd=interp1(an,Cddat(:,1),alpha);
-        elseif alpha>an(end) && Re>=Ren(1) && Re<Ren(end)
-            Cd=interp1(Ren,Cddat(end,:),Re);
-        elseif alpha>an(end) && Re>=0 && Re<Ren(1)
-            Cd=Cddat(end,1);
-        elseif alpha>an(end) && Re>=Ren(end)
-            Cd=Cddat(end,end);
-        else
-            error('CD out of range');
-            %Cd=0.5;%Hack !!Change to error message!!
-            %warning('outside table 2')
-        end
+%         %EXTRACT DATA FROM INPUT TABLES 2 and 3***********************************
+%         %INTAB2*******************************************************************
+%         an=INTAB2(2:end,1);%Get CD from table
+%         Ren=INTAB2(1,2:end);
+%         Cddat=INTAB2(2:end,2:end);
+%         
+%         if alpha<an(end) && alpha>=0 && Re>=Ren(1) && Re<Ren(end)
+%             Cd=interp2(Ren,an,Cddat,Re,alpha);
+%         elseif alpha<an(end) && alpha>=0 && Re>=Ren(end)
+%             Cd=interp1(an,Cddat(:,end),alpha);
+%         elseif alpha<an(end) && alpha>=0 && Re>=0 && Re<Ren(1)
+%             Cd=interp1(an,Cddat(:,1),alpha);
+%         elseif alpha>an(end) && Re>=Ren(1) && Re<Ren(end)
+%             Cd=interp1(Ren,Cddat(end,:),Re);
+%         elseif alpha>an(end) && Re>=0 && Re<Ren(1)
+%             Cd=Cddat(end,1);
+%         elseif alpha>an(end) && Re>=Ren(end)
+%             Cd=Cddat(end,end);
+%         else
+%             error('CD out of range');
+%             %Cd=0.5;%Hack !!Change to error message!!
+%             %warning('outside table 2')
+%         end
         
         
         %INTAB3*******************************************************************
@@ -253,21 +253,25 @@ end
         c=sqrt(gamma*R*temp);
         Ma=Vtmag/c;
         
-        if Ma<cll
-            Cd=Cd;
-            Cn=Cn;
-        elseif Ma>=cll && Ma<pgl
-            Cd=Cd/sqrt(1-Ma^2);
-            Cn=Cn/sqrt(1-Ma^2);
-        elseif Ma>=pgl && Ma<pgu
-            Cd=Cd/sqrt(1-pgl^2);
-            Cn=Cn/sqrt(1-pgl^2);
-        elseif Ma>=pgu
-            Cd=Cd/sqrt((Ma^2)-1);
-            Cn=Cn/sqrt((Ma^2)-1);
-        else
-            error('Mach error in CD');
+        if Ma > 0.7
+            Ma
         end
+%         
+%         if Ma<cll
+%             Cd=Cd;
+%             Cn=Cn;
+%         elseif Ma>=cll && Ma<pgl
+%             Cd=Cd/sqrt(1-Ma^2);
+%             Cn=Cn/sqrt(1-Ma^2);
+%         elseif Ma>=pgl && Ma<pgu
+%             Cd=Cd/sqrt(1-pgl^2);
+%             Cn=Cn/sqrt(1-pgl^2);
+%         elseif Ma>=pgu
+%             Cd=Cd/sqrt((Ma^2)-1);
+%             Cn=Cn/sqrt((Ma^2)-1);
+%         else
+%             error('Mach error in CD');
+%         end
         
         %CP AOA Calculations ***********************************************
         Ibodyinv=inv(Ibody);
@@ -304,19 +308,26 @@ end
         
         
         %%%%%% AIRBRAKE CALCULATIONS %%%%%%%
-        state.plot = plot;
-        plot = plot + 1;
-        state.tt = tt; % current time
-        state.thrust = Ti; % current thrust
-        state.Cd = Cd; % estimated drag coefficient
-        state.alt = zn; % current altitude
-        state.vel = Ut(3); % current vertical velocity
-        state.m = Mi; % [kg] mass of rocket after burnout
-        state.rho = rho; % [kg/m^3] density of air
-        state.A_ref = Ar; % [m^2] reference area
-        state.g = 9.81; % [m/s^2] acceleration due to gravity
+        if Ma<0 && Ti == 0 % Air brakes full on if coasting and going slow enough
+            Cd = 0.84281; % Results from CFD
+        else
+            Cd = 0.3219375; % Results from CFD
+        end
+            
         
-        Cd = AIRBRAKE(state);
+%         state.plot = plot;
+%         plot = plot + 1;
+%         state.tt = tt; % current time
+%         state.thrust = Ti; % current thrust
+%         state.Cd = Cd; % estimated drag coefficient
+%         state.alt = zn; % current altitude
+%         state.vel = Ut(3); % current vertical velocity
+%         state.m = Mi; % [kg] mass of rocket after burnout
+%         state.rho = rho; % [kg/m^3] density of air
+%         state.A_ref = Ar; % [m^2] reference area
+%         state.g = 9.81; % [m/s^2] acceleration due to gravity
+%         
+%         Cd = AIRBRAKE(state);
         
         
         %Force vector calculations*******************************************
