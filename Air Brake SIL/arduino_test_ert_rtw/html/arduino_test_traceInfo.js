@@ -1,0 +1,37 @@
+function RTW_rtwnameSIDMap() {
+	this.rtwnameHashMap = new Array();
+	this.sidHashMap = new Array();
+	this.rtwnameHashMap["<Root>"] = {sid: "arduino_test"};
+	this.sidHashMap["arduino_test"] = {rtwname: "<Root>"};
+	this.rtwnameHashMap["<S1>"] = {sid: "arduino_test:3"};
+	this.sidHashMap["arduino_test:3"] = {rtwname: "<S1>"};
+	this.rtwnameHashMap["<Root>/Abs"] = {sid: "arduino_test:15"};
+	this.sidHashMap["arduino_test:15"] = {rtwname: "<Root>/Abs"};
+	this.rtwnameHashMap["<Root>/Analog Input"] = {sid: "arduino_test:9"};
+	this.sidHashMap["arduino_test:9"] = {rtwname: "<Root>/Analog Input"};
+	this.rtwnameHashMap["<Root>/Constant"] = {sid: "arduino_test:11"};
+	this.sidHashMap["arduino_test:11"] = {rtwname: "<Root>/Constant"};
+	this.rtwnameHashMap["<Root>/Constant1"] = {sid: "arduino_test:14"};
+	this.sidHashMap["arduino_test:14"] = {rtwname: "<Root>/Constant1"};
+	this.rtwnameHashMap["<Root>/Digital Output"] = {sid: "arduino_test:3"};
+	this.sidHashMap["arduino_test:3"] = {rtwname: "<Root>/Digital Output"};
+	this.rtwnameHashMap["<Root>/GreaterThan"] = {sid: "arduino_test:13"};
+	this.sidHashMap["arduino_test:13"] = {rtwname: "<Root>/GreaterThan"};
+	this.rtwnameHashMap["<Root>/Multiply"] = {sid: "arduino_test:18"};
+	this.sidHashMap["arduino_test:18"] = {rtwname: "<Root>/Multiply"};
+	this.rtwnameHashMap["<Root>/Pulse Generator"] = {sid: "arduino_test:17"};
+	this.sidHashMap["arduino_test:17"] = {rtwname: "<Root>/Pulse Generator"};
+	this.rtwnameHashMap["<Root>/Scope"] = {sid: "arduino_test:10"};
+	this.sidHashMap["arduino_test:10"] = {rtwname: "<Root>/Scope"};
+	this.rtwnameHashMap["<Root>/Scope1"] = {sid: "arduino_test:12"};
+	this.sidHashMap["arduino_test:12"] = {rtwname: "<Root>/Scope1"};
+	this.rtwnameHashMap["<S1>/In1"] = {sid: "arduino_test:3:7"};
+	this.sidHashMap["arduino_test:3:7"] = {rtwname: "<S1>/In1"};
+	this.rtwnameHashMap["<S1>/Data Type Conversion"] = {sid: "arduino_test:3:11"};
+	this.sidHashMap["arduino_test:3:11"] = {rtwname: "<S1>/Data Type Conversion"};
+	this.rtwnameHashMap["<S1>/Digital Output"] = {sid: "arduino_test:3:12"};
+	this.sidHashMap["arduino_test:3:12"] = {rtwname: "<S1>/Digital Output"};
+	this.getSID = function(rtwname) { return this.rtwnameHashMap[rtwname];}
+	this.getRtwname = function(sid) { return this.sidHashMap[sid];}
+}
+RTW_rtwnameSIDMap.instance = new RTW_rtwnameSIDMap();
