@@ -1,0 +1,76 @@
+SIL_Arduino.o: SIL_Arduino.c SIL_Arduino.h rtwtypes.h \
+ C:/PROGRA~1/MATLAB/R2018b/simulink/include/rtw_extmode.h \
+ C:/PROGRA~1/MATLAB/R2018b/simulink/include/sysran_types.h \
+ C:/PROGRA~1/MATLAB/R2018b/simulink/include/rtw_continuous.h \
+ C:/Users/benkl/OneDrive/DOCUME~1/GitHub/MECH400/AIRBRA~1/SIL_Arduino_ert_rtw/rtwtypes.h \
+ C:/PROGRA~1/MATLAB/R2018b/simulink/include/rtw_solver.h \
+ C:/PROGRA~1/MATLAB/R2018b/simulink/include/rtw_continuous.h \
+ C:/PROGRA~1/MATLAB/R2018b/rtw/c/src/dt_info.h \
+ C:/PROGRA~1/MATLAB/R2018b/rtw/c/src/ext_mode/common/ext_work.h \
+ C:/PROGRA~1/MATLAB/R2018b/rtw/c/src/ext_mode/common/ext_types.h \
+ C:/PROGRA~3/MATLAB/SUPPOR~1/R2018b/toolbox/target/shared/svd/include/MW_AnalogIn.h \
+ C:/PROGRA~3/MATLAB/SUPPOR~1/R2018b/toolbox/target/shared/svd/include/MW_SVD.h \
+ C:/PROGRA~3/MATLAB/SUPPOR~1/R2018b/toolbox/target/SUPPOR~1/ARDUIN~2/include/MW_arduino_digitalio.h \
+ SIL_Arduino_types.h multiword_types.h \
+ C:/PROGRA~3/MATLAB/SUPPOR~1/R2018b/toolbox/target/shared/svd/include/MW_SVD.h \
+ MW_target_hardware_resources.h \
+ C:/PROGRA~3/MATLAB/SUPPOR~1/R2018b/toolbox/target/SUPPOR~1/ARDUIN~1/SCHEDU~1/include/arduinoAVRScheduler.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2018b/3P.instrset/arduinoide.instrset/arduino-1.8.1/hardware/arduino/avr/cores/arduino/Arduino.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2018b/3P.instrset/arduinoide.instrset/arduino-1.8.1/hardware/arduino/avr/cores/arduino/binary.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2018b/3P.instrset/arduinoide.instrset/arduino-1.8.1/hardware/arduino/avr/variants/standard/pins_arduino.h \
+ rtGetInf.h rt_nonfinite.h SIL_Arduino_private.h SIL_Arduino_dt.h \
+ C:/PROGRA~1/MATLAB/R2018b/rtw/c/src/ext_mode/common/ext_types.h
+
+SIL_Arduino.h:
+
+rtwtypes.h:
+
+C:/PROGRA~1/MATLAB/R2018b/simulink/include/rtw_extmode.h:
+
+C:/PROGRA~1/MATLAB/R2018b/simulink/include/sysran_types.h:
+
+C:/PROGRA~1/MATLAB/R2018b/simulink/include/rtw_continuous.h:
+
+C:/Users/benkl/OneDrive/DOCUME~1/GitHub/MECH400/AIRBRA~1/SIL_Arduino_ert_rtw/rtwtypes.h:
+
+C:/PROGRA~1/MATLAB/R2018b/simulink/include/rtw_solver.h:
+
+C:/PROGRA~1/MATLAB/R2018b/simulink/include/rtw_continuous.h:
+
+C:/PROGRA~1/MATLAB/R2018b/rtw/c/src/dt_info.h:
+
+C:/PROGRA~1/MATLAB/R2018b/rtw/c/src/ext_mode/common/ext_work.h:
+
+C:/PROGRA~1/MATLAB/R2018b/rtw/c/src/ext_mode/common/ext_types.h:
+
+C:/PROGRA~3/MATLAB/SUPPOR~1/R2018b/toolbox/target/shared/svd/include/MW_AnalogIn.h:
+
+C:/PROGRA~3/MATLAB/SUPPOR~1/R2018b/toolbox/target/shared/svd/include/MW_SVD.h:
+
+C:/PROGRA~3/MATLAB/SUPPOR~1/R2018b/toolbox/target/SUPPOR~1/ARDUIN~2/include/MW_arduino_digitalio.h:
+
+SIL_Arduino_types.h:
+
+multiword_types.h:
+
+C:/PROGRA~3/MATLAB/SUPPOR~1/R2018b/toolbox/target/shared/svd/include/MW_SVD.h:
+
+MW_target_hardware_resources.h:
+
+C:/PROGRA~3/MATLAB/SUPPOR~1/R2018b/toolbox/target/SUPPOR~1/ARDUIN~1/SCHEDU~1/include/arduinoAVRScheduler.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2018b/3P.instrset/arduinoide.instrset/arduino-1.8.1/hardware/arduino/avr/cores/arduino/Arduino.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2018b/3P.instrset/arduinoide.instrset/arduino-1.8.1/hardware/arduino/avr/cores/arduino/binary.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2018b/3P.instrset/arduinoide.instrset/arduino-1.8.1/hardware/arduino/avr/variants/standard/pins_arduino.h:
+
+rtGetInf.h:
+
+rt_nonfinite.h:
+
+SIL_Arduino_private.h:
+
+SIL_Arduino_dt.h:
+
+C:/PROGRA~1/MATLAB/R2018b/rtw/c/src/ext_mode/common/ext_types.h:
