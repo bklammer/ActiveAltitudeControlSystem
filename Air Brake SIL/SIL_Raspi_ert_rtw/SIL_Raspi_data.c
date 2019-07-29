@@ -8,9 +8,9 @@
  *
  * Code generated for Simulink model 'SIL_Raspi'.
  *
- * Model version                  : 1.52
+ * Model version                  : 1.53
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Sun Jul 28 15:59:47 2019
+ * C/C++ source code generated on : Sun Jul 28 20:26:52 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -1039,30 +1039,25 @@ P_SIL_Raspi_T SIL_Raspi_P = {
    */
   1.0,
 
-  /* Expression: 89556
+  /* Expression: 6523
    * Referenced by: '<S1>/Proportional Gain'
    */
-  89556.0,
+  6523.0,
 
-  /* Expression: 3000
+  /* Expression: 3200
    * Referenced by: '<Root>/Constant1'
    */
-  3000.0,
+  3200.0,
 
-  /* Expression: 13
+  /* Expression: 15.72
    * Referenced by: '<S1>/Constant5'
    */
-  13.0,
+  15.72,
 
   /* Expression: 240
    * Referenced by: '<S1>/Ma 0.7'
    */
   240.0,
-
-  /* Expression: 1
-   * Referenced by: '<S6>/Constant1'
-   */
-  1.0,
 
   /* Expression: 0
    * Referenced by: '<S6>/Constant'

@@ -28,8 +28,8 @@
     ;%
     ;% Auto data (SIL_Raspi_P)
     ;%
-      section.nData     = 25;
-      section.data(25)  = dumData; %prealloc
+      section.nData     = 24;
+      section.data(24)  = dumData; %prealloc
       
 	  ;% SIL_Raspi_P.INTAB1
 	  section.data(1).logicalSrcIdx = 0;
@@ -87,49 +87,45 @@
 	  section.data(14).logicalSrcIdx = 13;
 	  section.data(14).dtTransOffset = 4177;
 	
-	  ;% SIL_Raspi_P.Constant1_Value_o
+	  ;% SIL_Raspi_P.Constant_Value_k
 	  section.data(15).logicalSrcIdx = 14;
 	  section.data(15).dtTransOffset = 4178;
 	
-	  ;% SIL_Raspi_P.Constant_Value_k
+	  ;% SIL_Raspi_P.AngleofAirBrakeFlapswhenFullyOp
 	  section.data(16).logicalSrcIdx = 15;
 	  section.data(16).dtTransOffset = 4179;
 	
-	  ;% SIL_Raspi_P.AngleofAirBrakeFlapswhenFullyOp
+	  ;% SIL_Raspi_P.Constant_Value_l
 	  section.data(17).logicalSrcIdx = 16;
 	  section.data(17).dtTransOffset = 4180;
 	
-	  ;% SIL_Raspi_P.Constant_Value_l
+	  ;% SIL_Raspi_P.Constant1_Value_j
 	  section.data(18).logicalSrcIdx = 17;
 	  section.data(18).dtTransOffset = 4181;
 	
-	  ;% SIL_Raspi_P.Constant1_Value_j
+	  ;% SIL_Raspi_P.StepSize_Value
 	  section.data(19).logicalSrcIdx = 18;
 	  section.data(19).dtTransOffset = 4182;
 	
-	  ;% SIL_Raspi_P.StepSize_Value
+	  ;% SIL_Raspi_P.StepFrequency_Amp
 	  section.data(20).logicalSrcIdx = 19;
 	  section.data(20).dtTransOffset = 4183;
 	
-	  ;% SIL_Raspi_P.StepFrequency_Amp
+	  ;% SIL_Raspi_P.StepFrequency_Period
 	  section.data(21).logicalSrcIdx = 20;
 	  section.data(21).dtTransOffset = 4184;
 	
-	  ;% SIL_Raspi_P.StepFrequency_Period
+	  ;% SIL_Raspi_P.StepFrequency_Duty
 	  section.data(22).logicalSrcIdx = 21;
 	  section.data(22).dtTransOffset = 4185;
 	
-	  ;% SIL_Raspi_P.StepFrequency_Duty
+	  ;% SIL_Raspi_P.StepFrequency_PhaseDelay
 	  section.data(23).logicalSrcIdx = 22;
 	  section.data(23).dtTransOffset = 4186;
 	
-	  ;% SIL_Raspi_P.StepFrequency_PhaseDelay
+	  ;% SIL_Raspi_P.Constant5_Value_k
 	  section.data(24).logicalSrcIdx = 23;
 	  section.data(24).dtTransOffset = 4187;
-	
-	  ;% SIL_Raspi_P.Constant5_Value_k
-	  section.data(25).logicalSrcIdx = 24;
-	  section.data(25).dtTransOffset = 4188;
 	
       nTotData = nTotData + section.nData;
       paramMap.sections(1) = section;
@@ -260,7 +256,7 @@
   ;%*******************
       
     nTotData      = 0; %add to this count as we go
-    nTotSects     = 6;
+    nTotSects     = 5;
     sectIdxOffset = 2;
     
     ;%
@@ -286,11 +282,11 @@
       section.nData     = 2;
       section.data(2)  = dumData; %prealloc
       
-	  ;% SIL_Raspi_DW.obj
+	  ;% SIL_Raspi_DW.UnitDelay_DSTATE
 	  section.data(1).logicalSrcIdx = 0;
 	  section.data(1).dtTransOffset = 0;
 	
-	  ;% SIL_Raspi_DW.obj_h
+	  ;% SIL_Raspi_DW.Memory_PreviousInput
 	  section.data(2).logicalSrcIdx = 1;
 	  section.data(2).dtTransOffset = 1;
 	
@@ -298,39 +294,35 @@
       dworkMap.sections(1) = section;
       clear section
       
-      section.nData     = 2;
-      section.data(2)  = dumData; %prealloc
+      section.nData     = 4;
+      section.data(4)  = dumData; %prealloc
       
-	  ;% SIL_Raspi_DW.UnitDelay_DSTATE
+	  ;% SIL_Raspi_DW.Scope_PWORK.LoggedData
 	  section.data(1).logicalSrcIdx = 2;
 	  section.data(1).dtTransOffset = 0;
 	
-	  ;% SIL_Raspi_DW.Memory_PreviousInput
+	  ;% SIL_Raspi_DW.ControlSignal_PWORK.LoggedData
 	  section.data(2).logicalSrcIdx = 3;
-	  section.data(2).dtTransOffset = 1;
+	  section.data(2).dtTransOffset = 3;
+	
+	  ;% SIL_Raspi_DW.StepperSignals_PWORK.LoggedData
+	  section.data(3).logicalSrcIdx = 4;
+	  section.data(3).dtTransOffset = 4;
+	
+	  ;% SIL_Raspi_DW.FlapAngle_PWORK.LoggedData
+	  section.data(4).logicalSrcIdx = 5;
+	  section.data(4).dtTransOffset = 6;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(2) = section;
       clear section
       
-      section.nData     = 4;
-      section.data(4)  = dumData; %prealloc
+      section.nData     = 1;
+      section.data(1)  = dumData; %prealloc
       
-	  ;% SIL_Raspi_DW.Scope_PWORK.LoggedData
-	  section.data(1).logicalSrcIdx = 4;
+	  ;% SIL_Raspi_DW.clockTickCounter
+	  section.data(1).logicalSrcIdx = 6;
 	  section.data(1).dtTransOffset = 0;
-	
-	  ;% SIL_Raspi_DW.ControlSignal_PWORK.LoggedData
-	  section.data(2).logicalSrcIdx = 5;
-	  section.data(2).dtTransOffset = 3;
-	
-	  ;% SIL_Raspi_DW.StepperSignals_PWORK.LoggedData
-	  section.data(3).logicalSrcIdx = 6;
-	  section.data(3).dtTransOffset = 4;
-	
-	  ;% SIL_Raspi_DW.FlapAngle_PWORK.LoggedData
-	  section.data(4).logicalSrcIdx = 7;
-	  section.data(4).dtTransOffset = 6;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(3) = section;
@@ -339,8 +331,8 @@
       section.nData     = 1;
       section.data(1)  = dumData; %prealloc
       
-	  ;% SIL_Raspi_DW.clockTickCounter
-	  section.data(1).logicalSrcIdx = 8;
+	  ;% SIL_Raspi_DW.Integrator_IWORK
+	  section.data(1).logicalSrcIdx = 7;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -350,23 +342,12 @@
       section.nData     = 1;
       section.data(1)  = dumData; %prealloc
       
-	  ;% SIL_Raspi_DW.Integrator_IWORK
-	  section.data(1).logicalSrcIdx = 9;
+	  ;% SIL_Raspi_DW.StepCounter_SubsysRanBC
+	  section.data(1).logicalSrcIdx = 8;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(5) = section;
-      clear section
-      
-      section.nData     = 1;
-      section.data(1)  = dumData; %prealloc
-      
-	  ;% SIL_Raspi_DW.StepCounter_SubsysRanBC
-	  section.data(1).logicalSrcIdx = 10;
-	  section.data(1).dtTransOffset = 0;
-	
-      nTotData = nTotData + section.nData;
-      dworkMap.sections(6) = section;
       clear section
       
     
@@ -395,8 +376,8 @@
   ;%
 
 
-  targMap.checksum0 = 4072752281;
-  targMap.checksum1 = 2069824899;
-  targMap.checksum2 = 1776912984;
-  targMap.checksum3 = 728605543;
+  targMap.checksum0 = 2069649503;
+  targMap.checksum1 = 1276412655;
+  targMap.checksum2 = 1662340380;
+  targMap.checksum3 = 164005924;
 

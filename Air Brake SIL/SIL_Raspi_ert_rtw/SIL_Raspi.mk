@@ -2,7 +2,7 @@
 ## Makefile generated for Simulink model 'SIL_Raspi'. 
 ## 
 ## Makefile     : SIL_Raspi.mk
-## Generated on : Sun Jul 28 14:45:43 2019
+## Generated on : Sun Jul 28 20:27:07 2019
 ## MATLAB Coder version: 4.1 (R2018b)
 ## 
 ## Build Info:
@@ -182,7 +182,7 @@ BUILD_TYPE = "Top-Level Standalone Executable"
 ## INCLUDE PATHS
 ###########################################################################
 
-INCLUDES_BUILDINFO = -I$(START_DIR) -I$(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/linux/include -I$(START_DIR)/SIL_Raspi_ert_rtw -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert -I$(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils -I$(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/include -I$(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server -I$(MATLAB_ROOT)/toolbox/target/codertarget/rtos/inc
+INCLUDES_BUILDINFO = -I$(START_DIR) -I$(START_DIR)/SIL_Raspi_ert_rtw -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert -I$(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils -I$(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/include -I$(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server -I$(MATLAB_ROOT)/toolbox/target/codertarget/rtos/inc
 
 INCLUDES = $(INCLUDES_BUILDINFO)
 
@@ -202,7 +202,7 @@ DEFINES = $(DEFINES_) $(DEFINES_BUILD_ARGS) $(DEFINES_OPTS) $(DEFINES_SKIPFORSIL
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/linux/src/MW_gpio.c $(START_DIR)/SIL_Raspi_ert_rtw/SIL_Raspi.c $(START_DIR)/SIL_Raspi_ert_rtw/SIL_Raspi_data.c $(START_DIR)/SIL_Raspi_ert_rtw/rtGetInf.c $(START_DIR)/SIL_Raspi_ert_rtw/rtGetNaN.c $(START_DIR)/SIL_Raspi_ert_rtw/rt_nonfinite.c $(START_DIR)/SIL_Raspi_ert_rtw/rt_zcfcn.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/ext_svr.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/updown.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/ext_work.c $(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils/rtiostream_utils.c $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server/MW_raspi_init.c $(MATLAB_ROOT)/toolbox/target/codertarget/rtos/src/linuxinitialize.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/rtiostream_interface.c $(MATLAB_ROOT)/rtw/c/src/rtiostream/rtiostreamtcpip/rtiostream_tcpip.c
+SRCS = $(START_DIR)/SIL_Raspi_ert_rtw/SIL_Raspi.c $(START_DIR)/SIL_Raspi_ert_rtw/SIL_Raspi_data.c $(START_DIR)/SIL_Raspi_ert_rtw/rtGetInf.c $(START_DIR)/SIL_Raspi_ert_rtw/rtGetNaN.c $(START_DIR)/SIL_Raspi_ert_rtw/rt_nonfinite.c $(START_DIR)/SIL_Raspi_ert_rtw/rt_zcfcn.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/ext_svr.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/updown.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/ext_work.c $(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils/rtiostream_utils.c $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server/MW_raspi_init.c $(MATLAB_ROOT)/toolbox/target/codertarget/rtos/src/linuxinitialize.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/rtiostream_interface.c $(MATLAB_ROOT)/rtw/c/src/rtiostream/rtiostreamtcpip/rtiostream_tcpip.c
 
 MAIN_SRC = $(START_DIR)/SIL_Raspi_ert_rtw/ert_main.c
 
@@ -212,7 +212,7 @@ ALL_SRCS = $(SRCS) $(MAIN_SRC)
 ## OBJECTS
 ###########################################################################
 
-OBJS = MW_gpio.c.o SIL_Raspi.c.o SIL_Raspi_data.c.o rtGetInf.c.o rtGetNaN.c.o rt_nonfinite.c.o rt_zcfcn.c.o ext_svr.c.o updown.c.o ext_work.c.o rtiostream_utils.c.o MW_raspi_init.c.o linuxinitialize.c.o rtiostream_interface.c.o rtiostream_tcpip.c.o
+OBJS = SIL_Raspi.c.o SIL_Raspi_data.c.o rtGetInf.c.o rtGetNaN.c.o rt_nonfinite.c.o rt_zcfcn.c.o ext_svr.c.o updown.c.o ext_work.c.o rtiostream_utils.c.o MW_raspi_init.c.o linuxinitialize.c.o rtiostream_interface.c.o rtiostream_tcpip.c.o
 
 MAIN_OBJ = ert_main.c.o
 
@@ -453,10 +453,6 @@ $(PRODUCT) : $(OBJS) $(PREBUILT_OBJS) $(MAIN_OBJ)
 
 %.cpp.o : $(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils/%.cpp
 	$(CPP) $(CPPFLAGS) -o $@ $<
-
-
-MW_gpio.c.o : $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/linux/src/MW_gpio.c
-	$(CC) $(CFLAGS) -o $@ $<
 
 
 MW_raspi_init.c.o : $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server/MW_raspi_init.c

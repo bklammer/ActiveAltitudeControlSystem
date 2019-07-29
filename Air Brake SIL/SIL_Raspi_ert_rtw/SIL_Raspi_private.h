@@ -8,9 +8,9 @@
  *
  * Code generated for Simulink model 'SIL_Raspi'.
  *
- * Model version                  : 1.52
+ * Model version                  : 1.53
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Sun Jul 28 15:59:47 2019
+ * C/C++ source code generated on : Sun Jul 28 20:26:52 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -50,7 +50,6 @@
 #endif
 
 extern real_T rt_powd_snf(real_T u0, real_T u1);
-extern real_T rt_roundd_snf(real_T u);
 
 /* private model entry point functions */
 extern void SIL_Raspi_derivatives(void);

@@ -8,9 +8,9 @@
  *
  * Code generation for model "SIL_Raspi".
  *
- * Model version              : 1.52
+ * Model version              : 1.53
  * Simulink Coder version : 9.0 (R2018b) 24-May-2018
- * C source code generated on : Sun Jul 28 15:59:47 2019
+ * C source code generated on : Sun Jul 28 20:26:52 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -35,8 +35,7 @@ static uint_T rtDataTypeSizes[] = {
   sizeof(int_T),
   sizeof(pointer_T),
   sizeof(action_T),
-  2*sizeof(uint32_T),
-  sizeof(codertarget_linux_blocks_Digi_T)
+  2*sizeof(uint32_T)
 };
 
 /* data type name table */
@@ -54,8 +53,7 @@ static const char_T * rtDataTypeNames[] = {
   "int_T",
   "pointer_T",
   "action_T",
-  "timer_uint32_pair_T",
-  "codertarget_linux_blocks_Digi_T"
+  "timer_uint32_pair_T"
 };
 
 /* data type transitions for block I/O structure */
@@ -64,8 +62,6 @@ static DataTypeTransition rtBTransitions[] = {
 
   { (char_T *)(&SIL_Raspi_B.DirectionSignal), 8, 0, 3 }
   ,
-
-  { (char_T *)(&SIL_Raspi_DW.obj), 14, 0, 2 },
 
   { (char_T *)(&SIL_Raspi_DW.UnitDelay_DSTATE), 0, 0, 2 },
 
@@ -80,13 +76,13 @@ static DataTypeTransition rtBTransitions[] = {
 
 /* data type transition table for block I/O structure */
 static DataTypeTransitionTable rtBTransTable = {
-  8U,
+  7U,
   rtBTransitions
 };
 
 /* data type transitions for Parameters structure */
 static DataTypeTransition rtPTransitions[] = {
-  { (char_T *)(&SIL_Raspi_P.INTAB1[0]), 0, 0, 4189 }
+  { (char_T *)(&SIL_Raspi_P.INTAB1[0]), 0, 0, 4188 }
 };
 
 /* data type transition table for Parameters structure */

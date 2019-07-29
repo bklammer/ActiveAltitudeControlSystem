@@ -65,7 +65,7 @@
   ;%**************************
       
     nTotData      = 0; %add to this count as we go
-    nTotSects     = 1;
+    nTotSects     = 2;
     sectIdxOffset = 0;
     
     ;%
@@ -99,6 +99,17 @@
       sigMap.sections(1) = section;
       clear section
       
+      section.nData     = 1;
+      section.data(1)  = dumData; %prealloc
+      
+	  ;% iddduegsz30.lquvxqhewx
+	  section.data(1).logicalSrcIdx = 1;
+	  section.data(1).dtTransOffset = 0;
+	
+      nTotData = nTotData + section.nData;
+      sigMap.sections(2) = section;
+      clear section
+      
     
       ;%
       ;% Non-auto Data (signal)
@@ -118,7 +129,7 @@
       
     nTotData      = 0; %add to this count as we go
     nTotSects     = 3;
-    sectIdxOffset = 1;
+    sectIdxOffset = 2;
     
     ;%
     ;% Define dummy sections & preallocate arrays
@@ -143,7 +154,7 @@
       section.nData     = 1;
       section.data(1)  = dumData; %prealloc
       
-	  ;% lrjpvtlqea2.moqszi4efy
+	  ;% lrjpvtlqea2.azdsb3p2v5
 	  section.data(1).logicalSrcIdx = 0;
 	  section.data(1).dtTransOffset = 0;
 	
@@ -151,12 +162,16 @@
       dworkMap.sections(1) = section;
       clear section
       
-      section.nData     = 1;
-      section.data(1)  = dumData; %prealloc
+      section.nData     = 2;
+      section.data(2)  = dumData; %prealloc
       
 	  ;% lrjpvtlqea2.gqe3ch4fp4.LoggedData
 	  section.data(1).logicalSrcIdx = 1;
 	  section.data(1).dtTransOffset = 0;
+	
+	  ;% lrjpvtlqea2.phwwpberzt.LoggedData
+	  section.data(2).logicalSrcIdx = 2;
+	  section.data(2).dtTransOffset = 1;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(2) = section;
@@ -165,8 +180,8 @@
       section.nData     = 1;
       section.data(1)  = dumData; %prealloc
       
-	  ;% lrjpvtlqea2.glpt424eo3
-	  section.data(1).logicalSrcIdx = 2;
+	  ;% lrjpvtlqea2.got3gqes4r
+	  section.data(1).logicalSrcIdx = 3;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -199,8 +214,8 @@
   ;%
 
 
-  targMap.checksum0 = 126716959;
-  targMap.checksum1 = 2525924134;
-  targMap.checksum2 = 2395942608;
-  targMap.checksum3 = 3173047714;
+  targMap.checksum0 = 3226796636;
+  targMap.checksum1 = 2003713512;
+  targMap.checksum2 = 1010557726;
+  targMap.checksum3 = 2709892813;
 

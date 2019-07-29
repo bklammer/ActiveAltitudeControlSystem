@@ -8,9 +8,9 @@
  *
  * Code generated for Simulink model 'SIL_Raspi'.
  *
- * Model version                  : 1.52
+ * Model version                  : 1.53
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Sun Jul 28 15:59:47 2019
+ * C/C++ source code generated on : Sun Jul 28 20:26:52 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -34,7 +34,6 @@
 #include "rtw_solver.h"
 #include "dt_info.h"
 #include "ext_work.h"
-#include "MW_gpio.h"
 #endif                                 /* SIL_Raspi_COMMON_INCLUDES_ */
 
 #include "SIL_Raspi_types.h"
@@ -198,8 +197,6 @@ typedef struct {
 
 /* Block states (default storage) for system '<Root>' */
 typedef struct {
-  codertarget_linux_blocks_Digi_T obj; /* '<S9>/Digital Write' */
-  codertarget_linux_blocks_Digi_T obj_h;/* '<S8>/Digital Write' */
   real_T UnitDelay_DSTATE;             /* '<S11>/Unit Delay' */
   real_T Memory_PreviousInput;         /* '<S3>/Memory' */
   struct {
@@ -286,20 +283,17 @@ struct P_SIL_Raspi_T_ {
   real_T Constant_Value_o;             /* Expression: 1
                                         * Referenced by: '<S1>/Constant'
                                         */
-  real_T ProportionalGain_Value;       /* Expression: 89556
+  real_T ProportionalGain_Value;       /* Expression: 6523
                                         * Referenced by: '<S1>/Proportional Gain'
                                         */
-  real_T Constant1_Value_m;            /* Expression: 3000
+  real_T Constant1_Value_m;            /* Expression: 3200
                                         * Referenced by: '<Root>/Constant1'
                                         */
-  real_T Constant5_Value;              /* Expression: 13
+  real_T Constant5_Value;              /* Expression: 15.72
                                         * Referenced by: '<S1>/Constant5'
                                         */
   real_T Ma07_Value;                   /* Expression: 240
                                         * Referenced by: '<S1>/Ma 0.7'
-                                        */
-  real_T Constant1_Value_o;            /* Expression: 1
-                                        * Referenced by: '<S6>/Constant1'
                                         */
   real_T Constant_Value_k;             /* Expression: 0
                                         * Referenced by: '<S6>/Constant'

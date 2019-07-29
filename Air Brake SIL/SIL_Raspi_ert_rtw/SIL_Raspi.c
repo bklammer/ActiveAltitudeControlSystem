@@ -8,9 +8,9 @@
  *
  * Code generated for Simulink model 'SIL_Raspi'.
  *
- * Model version                  : 1.52
+ * Model version                  : 1.53
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Sun Jul 28 15:59:47 2019
+ * C/C++ source code generated on : Sun Jul 28 20:26:52 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -37,18 +37,6 @@ PrevZCX_SIL_Raspi_T SIL_Raspi_PrevZCX;
 /* Real-time model */
 RT_MODEL_SIL_Raspi_T SIL_Raspi_M_;
 RT_MODEL_SIL_Raspi_T *const SIL_Raspi_M = &SIL_Raspi_M_;
-
-/* Forward declaration for local functions */
-static void SIL_Raspi_SystemCore_release_l(const codertarget_linux_blocks_Digi_T
-  *obj);
-static void SIL_Raspi_SystemCore_delete_l(const codertarget_linux_blocks_Digi_T *
-  obj);
-static void matlabCodegenHandle_matlabCod_l(codertarget_linux_blocks_Digi_T *obj);
-static void SIL_Raspi_SystemCore_release(const codertarget_linux_blocks_Digi_T
-  *obj);
-static void SIL_Raspi_SystemCore_delete(const codertarget_linux_blocks_Digi_T
-  *obj);
-static void matlabCodegenHandle_matlabCodeg(codertarget_linux_blocks_Digi_T *obj);
 
 /*
  * This function updates continuous states using the ODE3 fixed-step
@@ -177,68 +165,6 @@ real_T rt_powd_snf(real_T u0, real_T u1)
   return y;
 }
 
-real_T rt_roundd_snf(real_T u)
-{
-  real_T y;
-  if (fabs(u) < 4.503599627370496E+15) {
-    if (u >= 0.5) {
-      y = floor(u + 0.5);
-    } else if (u > -0.5) {
-      y = u * 0.0;
-    } else {
-      y = ceil(u - 0.5);
-    }
-  } else {
-    y = u;
-  }
-
-  return y;
-}
-
-static void SIL_Raspi_SystemCore_release_l(const codertarget_linux_blocks_Digi_T
-  *obj)
-{
-  if ((obj->isInitialized == 1) && obj->isSetupComplete) {
-    MW_gpioTerminate(20U);
-  }
-}
-
-static void SIL_Raspi_SystemCore_delete_l(const codertarget_linux_blocks_Digi_T *
-  obj)
-{
-  SIL_Raspi_SystemCore_release_l(obj);
-}
-
-static void matlabCodegenHandle_matlabCod_l(codertarget_linux_blocks_Digi_T *obj)
-{
-  if (!obj->matlabCodegenIsDeleted) {
-    obj->matlabCodegenIsDeleted = true;
-    SIL_Raspi_SystemCore_delete_l(obj);
-  }
-}
-
-static void SIL_Raspi_SystemCore_release(const codertarget_linux_blocks_Digi_T
-  *obj)
-{
-  if ((obj->isInitialized == 1) && obj->isSetupComplete) {
-    MW_gpioTerminate(21U);
-  }
-}
-
-static void SIL_Raspi_SystemCore_delete(const codertarget_linux_blocks_Digi_T
-  *obj)
-{
-  SIL_Raspi_SystemCore_release(obj);
-}
-
-static void matlabCodegenHandle_matlabCodeg(codertarget_linux_blocks_Digi_T *obj)
-{
-  if (!obj->matlabCodegenIsDeleted) {
-    obj->matlabCodegenIsDeleted = true;
-    SIL_Raspi_SystemCore_delete(obj);
-  }
-}
-
 /* Model step function */
 void SIL_Raspi_step(void)
 {
@@ -246,9 +172,8 @@ void SIL_Raspi_step(void)
   int32_T b_ii;
   real_T e;
   real_T f;
-  real_T rtb_CurrentTime;
   ZCEventType zcEvent;
-  uint8_T tmp;
+  real_T rtb_CurrentTime;
   real_T x_tmp;
   boolean_T exitg1;
   if (rtmIsMajorTimeStep(SIL_Raspi_M)) {
@@ -382,8 +307,7 @@ void SIL_Raspi_step(void)
    *  Constant: '<S1>/Constant5'
    */
   SIL_Raspi_B.Ti = SIL_Raspi_B.sensor_data[0];
-  rtb_CurrentTime = SIL_Raspi_P.Constant5_Value / (SIL_Raspi_B.sensor_data[3] *
-    0.9);
+  rtb_CurrentTime = SIL_Raspi_P.Constant5_Value / SIL_Raspi_B.sensor_data[3];
   SIL_Raspi_B.temp = 19.62 / (SIL_Raspi_B.sensor_data[1] *
     SIL_Raspi_B.sensor_data[1]);
   SIL_Raspi_B.Vz = SIL_Raspi_P.Constant1_Value_m - SIL_Raspi_B.sensor_data[2];
@@ -439,22 +363,7 @@ void SIL_Raspi_step(void)
      *  Constant: '<S7>/Constant1'
      */
     SIL_Raspi_B.LessThan = (SIL_Raspi_B.Memory > SIL_Raspi_P.Constant1_Value_j);
-  }
 
-  /* Product: '<S6>/Multiply1' incorporates:
-   *  Constant: '<S6>/Constant1'
-   */
-  SIL_Raspi_B.Ti = SIL_Raspi_B.ControlSignaluntisofstepperangl *
-    SIL_Raspi_P.Constant1_Value_o;
-
-  /* RelationalOperator: '<S6>/GreaterThan1' incorporates:
-   *  Constant: '<S6>/Constant'
-   */
-  SIL_Raspi_B.DirectionSignal = (SIL_Raspi_B.Ti > SIL_Raspi_P.Constant_Value_k);
-
-  /* Abs: '<S6>/Abs' */
-  SIL_Raspi_B.Ti = fabs(SIL_Raspi_B.Ti);
-  if (rtmIsMajorTimeStep(SIL_Raspi_M)) {
     /* DiscretePulseGenerator: '<S6>/Step Frequency' */
     SIL_Raspi_B.Howfasttostep = (SIL_Raspi_DW.clockTickCounter <
       SIL_Raspi_P.StepFrequency_Duty) && (SIL_Raspi_DW.clockTickCounter >= 0) ?
@@ -469,7 +378,14 @@ void SIL_Raspi_step(void)
     /* End of DiscretePulseGenerator: '<S6>/Step Frequency' */
   }
 
+  /* RelationalOperator: '<S6>/GreaterThan1' incorporates:
+   *  Constant: '<S6>/Constant'
+   */
+  SIL_Raspi_B.DirectionSignal = (SIL_Raspi_B.ControlSignaluntisofstepperangl >
+    SIL_Raspi_P.Constant_Value_k);
+
   /* Product: '<S7>/Multiply' incorporates:
+   *  Abs: '<S6>/Abs'
    *  Constant: '<S6>/Step Size'
    *  Logic: '<S7>/AND2'
    *  Logic: '<S7>/NAND'
@@ -479,26 +395,9 @@ void SIL_Raspi_step(void)
    */
   SIL_Raspi_B.Multiply = (real_T)(((!SIL_Raspi_B.DirectionSignal) ||
     (!SIL_Raspi_B.GreaterThan)) && (SIL_Raspi_B.DirectionSignal ||
-    SIL_Raspi_B.LessThan)) * ((real_T)(SIL_Raspi_B.Ti >
-    SIL_Raspi_P.StepSize_Value) * SIL_Raspi_B.Howfasttostep);
-  if (rtmIsMajorTimeStep(SIL_Raspi_M)) {
-  }
-
-  /* MATLABSystem: '<S9>/Digital Write' */
-  SIL_Raspi_B.Ti = rt_roundd_snf(SIL_Raspi_B.Multiply);
-  if (SIL_Raspi_B.Ti < 256.0) {
-    if (SIL_Raspi_B.Ti >= 0.0) {
-      tmp = (uint8_T)SIL_Raspi_B.Ti;
-    } else {
-      tmp = 0U;
-    }
-  } else {
-    tmp = MAX_uint8_T;
-  }
-
-  MW_gpioWrite(20U, tmp);
-
-  /* End of MATLABSystem: '<S9>/Digital Write' */
+    SIL_Raspi_B.LessThan)) * ((real_T)(fabs
+    (SIL_Raspi_B.ControlSignaluntisofstepperangl) > SIL_Raspi_P.StepSize_Value) *
+    SIL_Raspi_B.Howfasttostep);
   if (rtmIsMajorTimeStep(SIL_Raspi_M)) {
     /* Outputs for Triggered SubSystem: '<S3>/Step Counter' incorporates:
      *  TriggerPort: '<S11>/Trigger'
@@ -528,12 +427,8 @@ void SIL_Raspi_step(void)
     /* End of Outputs for SubSystem: '<S3>/Step Counter' */
 
     /* MATLAB Function: '<S3>/Steps to Angle' */
-    SIL_Raspi_B.flap_angle = SIL_Raspi_B.UnitDelay * 1.8 * 0.1820830298616169;
-  }
+    SIL_Raspi_B.flap_angle = SIL_Raspi_B.UnitDelay * 1.8 * 2.5;
 
-  /* MATLABSystem: '<S8>/Digital Write' */
-  MW_gpioWrite(21U, (uint8_T)SIL_Raspi_B.DirectionSignal);
-  if (rtmIsMajorTimeStep(SIL_Raspi_M)) {
     /* Stop: '<S4>/Stop Simulation' incorporates:
      *  Constant: '<S4>/Constant5'
      *  RelationalOperator: '<S4>/Relational Operator'
@@ -661,25 +556,23 @@ void SIL_Raspi_initialize(void)
   rtmSetFirstInitCond(SIL_Raspi_M, 1);
 
   /* External mode info */
-  SIL_Raspi_M->Sizes.checksums[0] = (4072752281U);
-  SIL_Raspi_M->Sizes.checksums[1] = (2069824899U);
-  SIL_Raspi_M->Sizes.checksums[2] = (1776912984U);
-  SIL_Raspi_M->Sizes.checksums[3] = (728605543U);
+  SIL_Raspi_M->Sizes.checksums[0] = (2069649503U);
+  SIL_Raspi_M->Sizes.checksums[1] = (1276412655U);
+  SIL_Raspi_M->Sizes.checksums[2] = (1662340380U);
+  SIL_Raspi_M->Sizes.checksums[3] = (164005924U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
     static RTWExtModeInfo rt_ExtModeInfo;
-    static const sysRanDType *systemRan[8];
+    static const sysRanDType *systemRan[6];
     SIL_Raspi_M->extModeInfo = (&rt_ExtModeInfo);
     rteiSetSubSystemActiveVectorAddresses(&rt_ExtModeInfo, systemRan);
     systemRan[0] = &rtAlwaysEnabled;
     systemRan[1] = &rtAlwaysEnabled;
-    systemRan[2] = &rtAlwaysEnabled;
+    systemRan[2] = (sysRanDType *)&SIL_Raspi_DW.StepCounter_SubsysRanBC;
     systemRan[3] = &rtAlwaysEnabled;
-    systemRan[4] = (sysRanDType *)&SIL_Raspi_DW.StepCounter_SubsysRanBC;
+    systemRan[4] = &rtAlwaysEnabled;
     systemRan[5] = &rtAlwaysEnabled;
-    systemRan[6] = &rtAlwaysEnabled;
-    systemRan[7] = &rtAlwaysEnabled;
     rteiSetModelMappingInfoPtr(SIL_Raspi_M->extModeInfo,
       &SIL_Raspi_M->SpecialInfo.mappingInfo);
     rteiSetChecksumsPtr(SIL_Raspi_M->extModeInfo, SIL_Raspi_M->Sizes.checksums);
@@ -706,7 +599,7 @@ void SIL_Raspi_initialize(void)
     (void) memset((char_T *) &dtInfo, 0,
                   sizeof(dtInfo));
     SIL_Raspi_M->SpecialInfo.mappingInfo = (&dtInfo);
-    dtInfo.numDataTypes = 15;
+    dtInfo.numDataTypes = 14;
     dtInfo.dataTypeSizes = &rtDataTypeSizes[0];
     dtInfo.dataTypeNames = &rtDataTypeNames[0];
 
@@ -723,24 +616,6 @@ void SIL_Raspi_initialize(void)
 
   /* Start for DiscretePulseGenerator: '<S6>/Step Frequency' */
   SIL_Raspi_DW.clockTickCounter = 0;
-
-  /* Start for MATLABSystem: '<S9>/Digital Write' */
-  SIL_Raspi_DW.obj.matlabCodegenIsDeleted = true;
-  SIL_Raspi_DW.obj.isInitialized = 0;
-  SIL_Raspi_DW.obj.matlabCodegenIsDeleted = false;
-  SIL_Raspi_DW.obj.isSetupComplete = false;
-  SIL_Raspi_DW.obj.isInitialized = 1;
-  MW_gpioInit(20U, true);
-  SIL_Raspi_DW.obj.isSetupComplete = true;
-
-  /* Start for MATLABSystem: '<S8>/Digital Write' */
-  SIL_Raspi_DW.obj_h.matlabCodegenIsDeleted = true;
-  SIL_Raspi_DW.obj_h.isInitialized = 0;
-  SIL_Raspi_DW.obj_h.matlabCodegenIsDeleted = false;
-  SIL_Raspi_DW.obj_h.isSetupComplete = false;
-  SIL_Raspi_DW.obj_h.isInitialized = 1;
-  MW_gpioInit(21U, true);
-  SIL_Raspi_DW.obj_h.isSetupComplete = true;
   SIL_Raspi_PrevZCX.StepCounter_Trig_ZCE = UNINITIALIZED_ZCSIG;
 
   /* InitializeConditions for Integrator: '<S4>/Integrator' */
@@ -774,11 +649,7 @@ void SIL_Raspi_initialize(void)
 /* Model terminate function */
 void SIL_Raspi_terminate(void)
 {
-  /* Terminate for MATLABSystem: '<S9>/Digital Write' */
-  matlabCodegenHandle_matlabCod_l(&SIL_Raspi_DW.obj);
-
-  /* Terminate for MATLABSystem: '<S8>/Digital Write' */
-  matlabCodegenHandle_matlabCodeg(&SIL_Raspi_DW.obj_h);
+  /* (no terminate code required) */
 }
 
 /*

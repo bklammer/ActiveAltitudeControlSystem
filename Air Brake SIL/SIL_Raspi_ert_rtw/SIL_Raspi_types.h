@@ -8,9 +8,9 @@
  *
  * Code generated for Simulink model 'SIL_Raspi'.
  *
- * Model version                  : 1.52
+ * Model version                  : 1.53
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Sun Jul 28 15:59:47 2019
+ * C/C++ source code generated on : Sun Jul 28 20:26:52 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -23,16 +23,6 @@
 #include "rtwtypes.h"
 #include "multiword_types.h"
 #include "zero_crossing_types.h"
-#ifndef typedef_codertarget_linux_blocks_Digi_T
-#define typedef_codertarget_linux_blocks_Digi_T
-
-typedef struct {
-  boolean_T matlabCodegenIsDeleted;
-  int32_T isInitialized;
-  boolean_T isSetupComplete;
-} codertarget_linux_blocks_Digi_T;
-
-#endif                                 /*typedef_codertarget_linux_blocks_Digi_T*/
 
 /* Parameters (default storage) */
 typedef struct P_SIL_Raspi_T_ P_SIL_Raspi_T;
