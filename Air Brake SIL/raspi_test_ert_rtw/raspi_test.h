@@ -8,9 +8,9 @@
  *
  * Code generated for Simulink model 'raspi_test'.
  *
- * Model version                  : 1.14
+ * Model version                  : 1.17
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Sun Jul 28 14:40:13 2019
+ * C/C++ source code generated on : Sun Jul 28 23:29:40 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -189,12 +189,7 @@ extern RT_MODEL_raspi_test_T *const raspi_test_M;
  * '<Root>' : 'raspi_test'
  * '<S1>'   : 'raspi_test/GPIO Write'
  * '<S2>'   : 'raspi_test/GPIO Write1'
- * '<S3>'   : 'raspi_test/Motor Controller'
- * '<S4>'   : 'raspi_test/Rotary Position Sensor Transfer Function'
- * '<S5>'   : 'raspi_test/Rotary Sensor Fail Safe'
- * '<S6>'   : 'raspi_test/Stepper Fail Safe'
- * '<S7>'   : 'raspi_test/Stepper Fail Safe/Detect Step'
- * '<S8>'   : 'raspi_test/Stepper Fail Safe/Detect Step/Positive'
+ * '<S3>'   : 'raspi_test/Rotary Position Sensor Transfer Function'
  */
 #endif                                 /* RTW_HEADER_raspi_test_h_ */
 

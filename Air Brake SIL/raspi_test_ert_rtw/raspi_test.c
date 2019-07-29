@@ -8,9 +8,9 @@
  *
  * Code generated for Simulink model 'raspi_test'.
  *
- * Model version                  : 1.14
+ * Model version                  : 1.17
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Sun Jul 28 14:40:13 2019
+ * C/C++ source code generated on : Sun Jul 28 23:29:40 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -159,12 +159,12 @@ void raspi_test_step(void)
   /* External mode */
   rtExtModeUploadCheckTrigger(1);
 
-  {                                    /* Sample time: [0.0005s, 0.0s] */
+  {                                    /* Sample time: [0.05s, 0.0s] */
     rtExtModeUpload(0, (real_T)raspi_test_M->Timing.taskTime0);
   }
 
   /* signal main to stop simulation */
-  {                                    /* Sample time: [0.0005s, 0.0s] */
+  {                                    /* Sample time: [0.05s, 0.0s] */
     if ((rtmGetTFinal(raspi_test_M)!=-1) &&
         !((rtmGetTFinal(raspi_test_M)-raspi_test_M->Timing.taskTime0) >
           raspi_test_M->Timing.taskTime0 * (DBL_EPSILON))) {
@@ -195,13 +195,13 @@ void raspi_test_initialize(void)
   (void) memset((void *)raspi_test_M, 0,
                 sizeof(RT_MODEL_raspi_test_T));
   rtmSetTFinal(raspi_test_M, -1);
-  raspi_test_M->Timing.stepSize0 = 0.0005;
+  raspi_test_M->Timing.stepSize0 = 0.05;
 
   /* External mode info */
-  raspi_test_M->Sizes.checksums[0] = (2150311049U);
-  raspi_test_M->Sizes.checksums[1] = (875592828U);
-  raspi_test_M->Sizes.checksums[2] = (2141719665U);
-  raspi_test_M->Sizes.checksums[3] = (3886293555U);
+  raspi_test_M->Sizes.checksums[0] = (4222602906U);
+  raspi_test_M->Sizes.checksums[1] = (242227106U);
+  raspi_test_M->Sizes.checksums[2] = (1962799769U);
+  raspi_test_M->Sizes.checksums[3] = (3569013962U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
