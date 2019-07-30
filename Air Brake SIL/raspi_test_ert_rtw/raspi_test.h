@@ -8,9 +8,9 @@
  *
  * Code generated for Simulink model 'raspi_test'.
  *
- * Model version                  : 1.17
+ * Model version                  : 1.18
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Sun Jul 28 23:29:40 2019
+ * C/C++ source code generated on : Mon Jul 29 09:08:07 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -20,9 +20,8 @@
 
 #ifndef RTW_HEADER_raspi_test_h_
 #define RTW_HEADER_raspi_test_h_
-#include <math.h>
-#include <float.h>
 #include <string.h>
+#include <float.h>
 #include <stddef.h>
 #ifndef raspi_test_COMMON_INCLUDES_
 # define raspi_test_COMMON_INCLUDES_
@@ -33,7 +32,7 @@
 #include "rtw_solver.h"
 #include "dt_info.h"
 #include "ext_work.h"
-#include "MW_gpio.h"
+#include "MW_I2C.h"
 #endif                                 /* raspi_test_COMMON_INCLUDES_ */
 
 #include "raspi_test_types.h"
@@ -84,36 +83,35 @@
 
 /* Block signals (default storage) */
 typedef struct {
-  real_T STEP;                         /* '<Root>/STEP' */
+  real_T CastToDouble;                 /* '<Root>/Cast To Double' */
+  real_T FlapAngle;                    /* '<S3>/Multiply1' */
 } B_raspi_test_T;
 
 /* Block states (default storage) for system '<Root>' */
 typedef struct {
-  codertarget_linux_blocks_Digi_T obj; /* '<S2>/Digital Write' */
-  codertarget_linux_blocks_Digi_T obj_f;/* '<S1>/Digital Write' */
+  codertarget_raspi_internal_I2_T obj; /* '<Root>/I2C Master Read' */
   struct {
     void *LoggedData;
-  } Scope3_PWORK;                      /* '<Root>/Scope3' */
+  } FlapAngle_PWORK;                   /* '<Root>/Flap Angle' */
 
-  int32_T clockTickCounter;            /* '<Root>/STEP' */
+  struct {
+    void *LoggedData;
+  } Scope2_PWORK;                      /* '<Root>/Scope2' */
 } DW_raspi_test_T;
 
 /* Parameters (default storage) */
 struct P_raspi_test_T_ {
-  real_T DIR_Value;                    /* Expression: 1
-                                        * Referenced by: '<Root>/DIR'
+  real_T I2CMasterRead_SampleTime;     /* Expression: 0.1
+                                        * Referenced by: '<Root>/I2C Master Read'
                                         */
-  real_T STEP_Amp;                     /* Expression: 1
-                                        * Referenced by: '<Root>/STEP'
+  real_T _Value;                       /* Expression: 2.962e4
+                                        * Referenced by: '<Root>/ '
                                         */
-  real_T STEP_Period;                  /* Computed Parameter: STEP_Period
-                                        * Referenced by: '<Root>/STEP'
+  real_T _Value_b;                     /* Expression: 1.87e4
+                                        * Referenced by: '<Root>/   '
                                         */
-  real_T STEP_Duty;                    /* Computed Parameter: STEP_Duty
-                                        * Referenced by: '<Root>/STEP'
-                                        */
-  real_T STEP_PhaseDelay;              /* Expression: 0
-                                        * Referenced by: '<Root>/STEP'
+  real_T _Value_i;                     /* Expression: 77
+                                        * Referenced by: '<Root>/  '
                                         */
 };
 

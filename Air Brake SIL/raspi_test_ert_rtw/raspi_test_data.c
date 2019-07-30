@@ -8,9 +8,9 @@
  *
  * Code generated for Simulink model 'raspi_test'.
  *
- * Model version                  : 1.17
+ * Model version                  : 1.18
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Sun Jul 28 23:29:40 2019
+ * C/C++ source code generated on : Mon Jul 29 09:08:07 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -23,30 +23,25 @@
 
 /* Block parameters (default storage) */
 P_raspi_test_T raspi_test_P = {
-  /* Expression: 1
-   * Referenced by: '<Root>/DIR'
+  /* Expression: 0.1
+   * Referenced by: '<Root>/I2C Master Read'
    */
-  1.0,
+  0.1,
 
-  /* Expression: 1
-   * Referenced by: '<Root>/STEP'
+  /* Expression: 2.962e4
+   * Referenced by: '<Root>/ '
    */
-  1.0,
+  29620.0,
 
-  /* Computed Parameter: STEP_Period
-   * Referenced by: '<Root>/STEP'
+  /* Expression: 1.87e4
+   * Referenced by: '<Root>/   '
    */
-  2.0,
+  18700.0,
 
-  /* Computed Parameter: STEP_Duty
-   * Referenced by: '<Root>/STEP'
+  /* Expression: 77
+   * Referenced by: '<Root>/  '
    */
-  1.0,
-
-  /* Expression: 0
-   * Referenced by: '<Root>/STEP'
-   */
-  0.0
+  77.0
 };
 
 /*

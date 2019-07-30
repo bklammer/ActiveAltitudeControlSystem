@@ -8,9 +8,9 @@
  *
  * Code generation for model "SIL_Raspi_control_panel".
  *
- * Model version              : 1.61
+ * Model version              : 1.68
  * Simulink Coder version : 9.0 (R2018b) 24-May-2018
- * C source code generated on : Sun Jul 28 23:38:10 2019
+ * C source code generated on : Mon Jul 29 13:33:01 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -62,7 +62,7 @@ static const char_T * rtDataTypeNames[] = {
 
 /* data type transitions for block I/O structure */
 static DataTypeTransition rtBTransitions[] = {
-  { (char_T *)(&SIL_Raspi_control_panel_B.InitialConditions[0]), 0, 0, 15 },
+  { (char_T *)(&SIL_Raspi_control_panel_B.InitialConditions[0]), 0, 0, 16 },
 
   { (char_T *)(&SIL_Raspi_control_panel_B.RotaryPositionSensor), 4, 0, 1 },
 
@@ -73,16 +73,15 @@ static DataTypeTransition rtBTransitions[] = {
 
   { (char_T *)(&SIL_Raspi_control_panel_DW.obj_k), 14, 0, 2 },
 
-  { (char_T *)(&SIL_Raspi_control_panel_DW.UnitDelay_DSTATE), 0, 0, 2 },
+  { (char_T *)(&SIL_Raspi_control_panel_DW.TmpRTBAtMATLABFunctionInport3_B), 0,
+    0, 2 },
 
-  { (char_T *)(&SIL_Raspi_control_panel_DW.Scope_PWORK.LoggedData[0]), 11, 0, 8
-  },
+  { (char_T *)(&SIL_Raspi_control_panel_DW.Display_PWORK.LoggedData[0]), 11, 0,
+    9 },
 
   { (char_T *)(&SIL_Raspi_control_panel_DW.clockTickCounter), 6, 0, 1 },
 
   { (char_T *)(&SIL_Raspi_control_panel_DW.Integrator_IWORK), 10, 0, 1 },
-
-  { (char_T *)(&SIL_Raspi_control_panel_DW.StepCounter_SubsysRanBC), 2, 0, 1 },
 
   { (char_T *)(&SIL_Raspi_control_panel_DW.TmpRTBAtNANDInport2_Buffer0), 8, 0, 2
   }
@@ -90,13 +89,13 @@ static DataTypeTransition rtBTransitions[] = {
 
 /* data type transition table for block I/O structure */
 static DataTypeTransitionTable rtBTransTable = {
-  11U,
+  10U,
   rtBTransitions
 };
 
 /* data type transitions for Parameters structure */
 static DataTypeTransition rtPTransitions[] = {
-  { (char_T *)(&SIL_Raspi_control_panel_P.INTAB1[0]), 0, 0, 4192 },
+  { (char_T *)(&SIL_Raspi_control_panel_P.INTAB1[0]), 0, 0, 4189 },
 
   { (char_T *)(&SIL_Raspi_control_panel_P.TmpRTBAtNANDInport2_InitialCond), 8, 0,
     2 }

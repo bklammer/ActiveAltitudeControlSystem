@@ -8,9 +8,9 @@
  *
  * Code generation for model "raspi_test".
  *
- * Model version              : 1.17
+ * Model version              : 1.18
  * Simulink Coder version : 9.0 (R2018b) 24-May-2018
- * C source code generated on : Sun Jul 28 23:29:40 2019
+ * C source code generated on : Mon Jul 29 09:08:07 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -36,7 +36,7 @@ static uint_T rtDataTypeSizes[] = {
   sizeof(pointer_T),
   sizeof(action_T),
   2*sizeof(uint32_T),
-  sizeof(codertarget_linux_blocks_Digi_T)
+  sizeof(codertarget_raspi_internal_I2_T)
 };
 
 /* data type name table */
@@ -55,30 +55,28 @@ static const char_T * rtDataTypeNames[] = {
   "pointer_T",
   "action_T",
   "timer_uint32_pair_T",
-  "codertarget_linux_blocks_Digi_T"
+  "codertarget_raspi_internal_I2_T"
 };
 
 /* data type transitions for block I/O structure */
 static DataTypeTransition rtBTransitions[] = {
-  { (char_T *)(&raspi_test_B.STEP), 0, 0, 1 }
+  { (char_T *)(&raspi_test_B.CastToDouble), 0, 0, 2 }
   ,
 
-  { (char_T *)(&raspi_test_DW.obj), 14, 0, 2 },
+  { (char_T *)(&raspi_test_DW.obj), 14, 0, 1 },
 
-  { (char_T *)(&raspi_test_DW.Scope3_PWORK.LoggedData), 11, 0, 1 },
-
-  { (char_T *)(&raspi_test_DW.clockTickCounter), 6, 0, 1 }
+  { (char_T *)(&raspi_test_DW.FlapAngle_PWORK.LoggedData), 11, 0, 2 }
 };
 
 /* data type transition table for block I/O structure */
 static DataTypeTransitionTable rtBTransTable = {
-  4U,
+  3U,
   rtBTransitions
 };
 
 /* data type transitions for Parameters structure */
 static DataTypeTransition rtPTransitions[] = {
-  { (char_T *)(&raspi_test_P.DIR_Value), 0, 0, 5 }
+  { (char_T *)(&raspi_test_P.I2CMasterRead_SampleTime), 0, 0, 4 }
 };
 
 /* data type transition table for Parameters structure */

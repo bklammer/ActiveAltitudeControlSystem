@@ -8,9 +8,9 @@
  *
  * Code generated for Simulink model 'raspi_test'.
  *
- * Model version                  : 1.17
+ * Model version                  : 1.18
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Sun Jul 28 23:29:40 2019
+ * C/C++ source code generated on : Mon Jul 29 09:08:07 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -33,49 +33,26 @@ RT_MODEL_raspi_test_T raspi_test_M_;
 RT_MODEL_raspi_test_T *const raspi_test_M = &raspi_test_M_;
 
 /* Forward declaration for local functions */
-static void raspi_test_SystemCore_release(const codertarget_linux_blocks_Digi_T *
+static void raspi_test_SystemCore_release(const codertarget_raspi_internal_I2_T *
   obj);
-static void raspi_test_SystemCore_delete(const codertarget_linux_blocks_Digi_T
+static void raspi_test_SystemCore_delete(const codertarget_raspi_internal_I2_T
   *obj);
-static void matlabCodegenHandle_matlabCodeg(codertarget_linux_blocks_Digi_T *obj);
-static void raspi_test_SystemCore_release_a(const
-  codertarget_linux_blocks_Digi_T *obj);
-static void raspi_test_SystemCore_delete_a(const codertarget_linux_blocks_Digi_T
-  *obj);
-static void matlabCodegenHandle_matlabCod_a(codertarget_linux_blocks_Digi_T *obj);
-real_T rt_roundd_snf(real_T u)
-{
-  real_T y;
-  if (fabs(u) < 4.503599627370496E+15) {
-    if (u >= 0.5) {
-      y = floor(u + 0.5);
-    } else if (u > -0.5) {
-      y = u * 0.0;
-    } else {
-      y = ceil(u - 0.5);
-    }
-  } else {
-    y = u;
-  }
-
-  return y;
-}
-
-static void raspi_test_SystemCore_release(const codertarget_linux_blocks_Digi_T *
+static void matlabCodegenHandle_matlabCodeg(codertarget_raspi_internal_I2_T *obj);
+static void raspi_test_SystemCore_release(const codertarget_raspi_internal_I2_T *
   obj)
 {
   if ((obj->isInitialized == 1) && obj->isSetupComplete) {
-    MW_gpioTerminate(21U);
+    MW_I2C_Close(obj->MW_I2C_HANDLE);
   }
 }
 
-static void raspi_test_SystemCore_delete(const codertarget_linux_blocks_Digi_T
+static void raspi_test_SystemCore_delete(const codertarget_raspi_internal_I2_T
   *obj)
 {
   raspi_test_SystemCore_release(obj);
 }
 
-static void matlabCodegenHandle_matlabCodeg(codertarget_linux_blocks_Digi_T *obj)
+static void matlabCodegenHandle_matlabCodeg(codertarget_raspi_internal_I2_T *obj)
 {
   if (!obj->matlabCodegenIsDeleted) {
     obj->matlabCodegenIsDeleted = true;
@@ -83,88 +60,63 @@ static void matlabCodegenHandle_matlabCodeg(codertarget_linux_blocks_Digi_T *obj
   }
 }
 
-static void raspi_test_SystemCore_release_a(const
-  codertarget_linux_blocks_Digi_T *obj)
-{
-  if ((obj->isInitialized == 1) && obj->isSetupComplete) {
-    MW_gpioTerminate(20U);
-  }
-}
-
-static void raspi_test_SystemCore_delete_a(const codertarget_linux_blocks_Digi_T
-  *obj)
-{
-  raspi_test_SystemCore_release_a(obj);
-}
-
-static void matlabCodegenHandle_matlabCod_a(codertarget_linux_blocks_Digi_T *obj)
-{
-  if (!obj->matlabCodegenIsDeleted) {
-    obj->matlabCodegenIsDeleted = true;
-    raspi_test_SystemCore_delete_a(obj);
-  }
-}
-
 /* Model step function */
 void raspi_test_step(void)
 {
-  real_T tmp;
-  uint8_T tmp_0;
+  int16_T output;
+  int16_T b_output;
+  uint8_T status;
+  uint8_T output_raw[2];
+  uint8_T b_x[2];
 
-  /* MATLABSystem: '<S1>/Digital Write' incorporates:
-   *  Constant: '<Root>/DIR'
+  /* MATLABSystem: '<Root>/I2C Master Read' */
+  if (raspi_test_DW.obj.SampleTime != raspi_test_P.I2CMasterRead_SampleTime) {
+    raspi_test_DW.obj.SampleTime = raspi_test_P.I2CMasterRead_SampleTime;
+  }
+
+  status = 0U;
+  status = MW_I2C_MasterWrite(raspi_test_DW.obj.MW_I2C_HANDLE, 72U, &status, 1U,
+    true, false);
+  if (0 == status) {
+    MW_I2C_MasterRead(raspi_test_DW.obj.MW_I2C_HANDLE, 72U, output_raw, 2U,
+                      false, true);
+    memcpy((void *)&b_output, (void *)&output_raw[0], (uint32_T)((size_t)1 *
+            sizeof(int16_T)));
+    memcpy((void *)&output_raw[0], (void *)&b_output, (uint32_T)((size_t)2 *
+            sizeof(uint8_T)));
+    b_x[0] = output_raw[1];
+    b_x[1] = output_raw[0];
+    memcpy((void *)&output, (void *)&b_x[0], (uint32_T)((size_t)1 * sizeof
+            (int16_T)));
+  } else {
+    output = 0;
+  }
+
+  /* DataTypeConversion: '<Root>/Cast To Double' incorporates:
+   *  MATLABSystem: '<Root>/I2C Master Read'
    */
-  tmp = rt_roundd_snf(raspi_test_P.DIR_Value);
-  if (tmp < 256.0) {
-    if (tmp >= 0.0) {
-      tmp_0 = (uint8_T)tmp;
-    } else {
-      tmp_0 = 0U;
-    }
-  } else {
-    tmp_0 = MAX_uint8_T;
-  }
+  raspi_test_B.CastToDouble = output;
 
-  MW_gpioWrite(21U, tmp_0);
-
-  /* End of MATLABSystem: '<S1>/Digital Write' */
-
-  /* DiscretePulseGenerator: '<Root>/STEP' */
-  raspi_test_B.STEP = (raspi_test_DW.clockTickCounter < raspi_test_P.STEP_Duty) &&
-    (raspi_test_DW.clockTickCounter >= 0) ? raspi_test_P.STEP_Amp : 0.0;
-  if (raspi_test_DW.clockTickCounter >= raspi_test_P.STEP_Period - 1.0) {
-    raspi_test_DW.clockTickCounter = 0;
-  } else {
-    raspi_test_DW.clockTickCounter++;
-  }
-
-  /* End of DiscretePulseGenerator: '<Root>/STEP' */
-
-  /* MATLABSystem: '<S2>/Digital Write' */
-  tmp = rt_roundd_snf(raspi_test_B.STEP);
-  if (tmp < 256.0) {
-    if (tmp >= 0.0) {
-      tmp_0 = (uint8_T)tmp;
-    } else {
-      tmp_0 = 0U;
-    }
-  } else {
-    tmp_0 = MAX_uint8_T;
-  }
-
-  MW_gpioWrite(20U, tmp_0);
-
-  /* End of MATLABSystem: '<S2>/Digital Write' */
+  /* Product: '<S3>/Multiply1' incorporates:
+   *  Constant: '<Root>/ '
+   *  Constant: '<Root>/  '
+   *  Constant: '<Root>/   '
+   *  Product: '<S3>/Divide'
+   *  Sum: '<S3>/Subtract'
+   *  Sum: '<S3>/Subtract1'
+   */
+  raspi_test_B.FlapAngle = (raspi_test_B.CastToDouble - raspi_test_P._Value) /
+    (raspi_test_P._Value_b - raspi_test_P._Value) * raspi_test_P._Value_i;
 
   /* External mode */
   rtExtModeUploadCheckTrigger(1);
 
-  {                                    /* Sample time: [0.05s, 0.0s] */
+  {                                    /* Sample time: [0.1s, 0.0s] */
     rtExtModeUpload(0, (real_T)raspi_test_M->Timing.taskTime0);
   }
 
   /* signal main to stop simulation */
-  {                                    /* Sample time: [0.05s, 0.0s] */
+  {                                    /* Sample time: [0.1s, 0.0s] */
     if ((rtmGetTFinal(raspi_test_M)!=-1) &&
         !((rtmGetTFinal(raspi_test_M)-raspi_test_M->Timing.taskTime0) >
           raspi_test_M->Timing.taskTime0 * (DBL_EPSILON))) {
@@ -195,23 +147,22 @@ void raspi_test_initialize(void)
   (void) memset((void *)raspi_test_M, 0,
                 sizeof(RT_MODEL_raspi_test_T));
   rtmSetTFinal(raspi_test_M, -1);
-  raspi_test_M->Timing.stepSize0 = 0.05;
+  raspi_test_M->Timing.stepSize0 = 0.1;
 
   /* External mode info */
-  raspi_test_M->Sizes.checksums[0] = (4222602906U);
-  raspi_test_M->Sizes.checksums[1] = (242227106U);
-  raspi_test_M->Sizes.checksums[2] = (1962799769U);
-  raspi_test_M->Sizes.checksums[3] = (3569013962U);
+  raspi_test_M->Sizes.checksums[0] = (3517670838U);
+  raspi_test_M->Sizes.checksums[1] = (4117695739U);
+  raspi_test_M->Sizes.checksums[2] = (449224543U);
+  raspi_test_M->Sizes.checksums[3] = (3292989292U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
     static RTWExtModeInfo rt_ExtModeInfo;
-    static const sysRanDType *systemRan[3];
+    static const sysRanDType *systemRan[2];
     raspi_test_M->extModeInfo = (&rt_ExtModeInfo);
     rteiSetSubSystemActiveVectorAddresses(&rt_ExtModeInfo, systemRan);
     systemRan[0] = &rtAlwaysEnabled;
     systemRan[1] = &rtAlwaysEnabled;
-    systemRan[2] = &rtAlwaysEnabled;
     rteiSetModelMappingInfoPtr(raspi_test_M->extModeInfo,
       &raspi_test_M->SpecialInfo.mappingInfo);
     rteiSetChecksumsPtr(raspi_test_M->extModeInfo, raspi_test_M->Sizes.checksums);
@@ -243,36 +194,32 @@ void raspi_test_initialize(void)
     dtInfo.PTransTable = &rtPTransTable;
   }
 
-  /* Start for MATLABSystem: '<S1>/Digital Write' */
-  raspi_test_DW.obj_f.matlabCodegenIsDeleted = true;
-  raspi_test_DW.obj_f.isInitialized = 0;
-  raspi_test_DW.obj_f.matlabCodegenIsDeleted = false;
-  raspi_test_DW.obj_f.isSetupComplete = false;
-  raspi_test_DW.obj_f.isInitialized = 1;
-  MW_gpioInit(21U, true);
-  raspi_test_DW.obj_f.isSetupComplete = true;
+  {
+    codertarget_raspi_internal_I2_T *obj;
+    uint32_T i2cname;
 
-  /* Start for DiscretePulseGenerator: '<Root>/STEP' */
-  raspi_test_DW.clockTickCounter = 0;
-
-  /* Start for MATLABSystem: '<S2>/Digital Write' */
-  raspi_test_DW.obj.matlabCodegenIsDeleted = true;
-  raspi_test_DW.obj.isInitialized = 0;
-  raspi_test_DW.obj.matlabCodegenIsDeleted = false;
-  raspi_test_DW.obj.isSetupComplete = false;
-  raspi_test_DW.obj.isInitialized = 1;
-  MW_gpioInit(20U, true);
-  raspi_test_DW.obj.isSetupComplete = true;
+    /* Start for MATLABSystem: '<Root>/I2C Master Read' */
+    raspi_test_DW.obj.matlabCodegenIsDeleted = true;
+    raspi_test_DW.obj.isInitialized = 0;
+    raspi_test_DW.obj.matlabCodegenIsDeleted = false;
+    raspi_test_DW.obj.SampleTime = raspi_test_P.I2CMasterRead_SampleTime;
+    obj = &raspi_test_DW.obj;
+    raspi_test_DW.obj.isSetupComplete = false;
+    raspi_test_DW.obj.isInitialized = 1;
+    i2cname = 1;
+    obj->MW_I2C_HANDLE = MW_I2C_Open(i2cname, 0);
+    raspi_test_DW.obj.BusSpeed = 100000U;
+    MW_I2C_SetBusSpeed(raspi_test_DW.obj.MW_I2C_HANDLE,
+                       raspi_test_DW.obj.BusSpeed);
+    raspi_test_DW.obj.isSetupComplete = true;
+  }
 }
 
 /* Model terminate function */
 void raspi_test_terminate(void)
 {
-  /* Terminate for MATLABSystem: '<S1>/Digital Write' */
-  matlabCodegenHandle_matlabCodeg(&raspi_test_DW.obj_f);
-
-  /* Terminate for MATLABSystem: '<S2>/Digital Write' */
-  matlabCodegenHandle_matlabCod_a(&raspi_test_DW.obj);
+  /* Terminate for MATLABSystem: '<Root>/I2C Master Read' */
+  matlabCodegenHandle_matlabCodeg(&raspi_test_DW.obj);
 }
 
 /*

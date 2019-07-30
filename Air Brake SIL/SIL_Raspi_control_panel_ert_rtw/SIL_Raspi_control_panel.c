@@ -8,9 +8,9 @@
  *
  * Code generated for Simulink model 'SIL_Raspi_control_panel'.
  *
- * Model version                  : 1.61
+ * Model version                  : 1.68
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Sun Jul 28 23:38:10 2019
+ * C/C++ source code generated on : Mon Jul 29 13:33:01 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -30,9 +30,6 @@ X_SIL_Raspi_control_panel_T SIL_Raspi_control_panel_X;
 
 /* Block states (default storage) */
 DW_SIL_Raspi_control_panel_T SIL_Raspi_control_panel_DW;
-
-/* Previous zero-crossings (trigger) states */
-PrevZCX_SIL_Raspi_control_pan_T SIL_Raspi_control_panel_PrevZCX;
 
 /* Real-time model */
 RT_MODEL_SIL_Raspi_control_pa_T SIL_Raspi_control_panel_M_;
@@ -97,7 +94,7 @@ static void rate_monotonic_scheduler(void)
    * counter is reset when it reaches its limit (zero means run).
    */
   (SIL_Raspi_control_panel_M->Timing.TaskCounters.TID[2])++;
-  if ((SIL_Raspi_control_panel_M->Timing.TaskCounters.TID[2]) > 19) {/* Sample time: [0.1s, 0.0s] */
+  if ((SIL_Raspi_control_panel_M->Timing.TaskCounters.TID[2]) > 1) {/* Sample time: [0.005s, 0.0s] */
     SIL_Raspi_control_panel_M->Timing.TaskCounters.TID[2] = 0;
   }
 }
@@ -321,7 +318,6 @@ void SIL_Raspi_control_panel_step0(void) /* Sample time: [0.0s, 0.0s] */
   real_T e;
   real_T f;
   real_T rtb_CurrentTime;
-  ZCEventType zcEvent;
   uint8_T tmp;
   real_T x_tmp;
   boolean_T exitg1;
@@ -342,8 +338,6 @@ void SIL_Raspi_control_panel_step0(void) /* Sample time: [0.0s, 0.0s] */
       (&SIL_Raspi_control_panel_M->solverInfo);
   }
 
-  /* Reset subsysRan breadcrumbs */
-  srClearBC(SIL_Raspi_control_panel_DW.StepCounter_SubsysRanBC);
   if (rtmIsMajorTimeStep(SIL_Raspi_control_panel_M)) {
     /* Constant: '<S5>/Initial Conditions' */
     SIL_Raspi_control_panel_B.InitialConditions[0] =
@@ -470,8 +464,6 @@ void SIL_Raspi_control_panel_step0(void) /* Sample time: [0.0s, 0.0s] */
   SIL_Raspi_control_panel_B.sensor_data[4] = SIL_Raspi_control_panel_B.Ti;
 
   /* End of MATLAB Function: '<S5>/MATLAB Function' */
-  if (rtmIsMajorTimeStep(SIL_Raspi_control_panel_M)) {
-  }
 
   /* MATLAB Function: '<S2>/MATLAB Function' incorporates:
    *  Constant: '<S1>/Target Altitude (m) '
@@ -528,14 +520,20 @@ void SIL_Raspi_control_panel_step0(void) /* Sample time: [0.0s, 0.0s] */
     (SIL_Raspi_control_panel_B.Ti - SIL_Raspi_control_panel_B.sensor_data[0]) *
     SIL_Raspi_control_panel_P.ProportionalGain_Value * (real_T)
     (SIL_Raspi_control_panel_B.sensor_data[4] <
-     SIL_Raspi_control_panel_P.Constant_Value_a) * (real_T)
+     SIL_Raspi_control_panel_P.Constant_Value) * (real_T)
     (SIL_Raspi_control_panel_B.sensor_data[1] <
      SIL_Raspi_control_panel_P.Ma07_Value);
 
-  /* RateTransition: '<S8>/TmpRTBAtNANDInport2' incorporates:
+  /* RateTransition: '<S1>/Flap Angle1' incorporates:
+   *  RateTransition: '<S8>/TmpRTBAtNANDInport2'
    *  RateTransition: '<S8>/TmpRTBAtORInport2'
    */
   if (rtmIsMajorTimeStep(SIL_Raspi_control_panel_M)) {
+    if (SIL_Raspi_control_panel_M->Timing.RateInteraction.TID1_2) {
+      SIL_Raspi_control_panel_B.FlapAngledeg =
+        SIL_Raspi_control_panel_DW.FlapAngle1_Buffer0;
+    }
+
     if (SIL_Raspi_control_panel_M->Timing.RateInteraction.TID1_2) {
       SIL_Raspi_control_panel_B.TmpRTBAtNANDInport2 =
         SIL_Raspi_control_panel_DW.TmpRTBAtNANDInport2_Buffer0;
@@ -559,7 +557,7 @@ void SIL_Raspi_control_panel_step0(void) /* Sample time: [0.0s, 0.0s] */
     /* End of DiscretePulseGenerator: '<S7>/Step Frequency' */
   }
 
-  /* End of RateTransition: '<S8>/TmpRTBAtNANDInport2' */
+  /* End of RateTransition: '<S1>/Flap Angle1' */
 
   /* RelationalOperator: '<S7>/GreaterThan1' incorporates:
    *  Constant: '<S7>/Constant'
@@ -605,32 +603,6 @@ void SIL_Raspi_control_panel_step0(void) /* Sample time: [0.0s, 0.0s] */
 
   /* End of MATLABSystem: '<S10>/Digital Write' */
 
-  /* Outputs for Triggered SubSystem: '<S4>/Step Counter' incorporates:
-   *  TriggerPort: '<S12>/Trigger'
-   */
-  if (rtmIsMajorTimeStep(SIL_Raspi_control_panel_M) && rtmIsMajorTimeStep
-      (SIL_Raspi_control_panel_M)) {
-    zcEvent = rt_ZCFcn(RISING_ZERO_CROSSING,
-                       &SIL_Raspi_control_panel_PrevZCX.StepCounter_Trig_ZCE,
-                       (SIL_Raspi_control_panel_B.Multiply));
-    if (zcEvent != NO_ZCEVENT) {
-      /* Sum: '<S12>/Sum' incorporates:
-       *  Constant: '<S12>/Constant'
-       *  Constant: '<S12>/Constant1'
-       *  Product: '<S12>/Multiply'
-       *  Sum: '<S12>/Add'
-       *  UnitDelay: '<S12>/Unit Delay'
-       */
-      SIL_Raspi_control_panel_DW.UnitDelay_DSTATE +=
-        (SIL_Raspi_control_panel_P.Constant1_Value + (real_T)
-         SIL_Raspi_control_panel_B.DirectionSignal) *
-        SIL_Raspi_control_panel_P.Constant_Value;
-      SIL_Raspi_control_panel_DW.StepCounter_SubsysRanBC = 4;
-    }
-  }
-
-  /* End of Outputs for SubSystem: '<S4>/Step Counter' */
-
   /* MATLABSystem: '<S9>/Digital Write' */
   MW_gpioWrite(21U, (uint8_T)SIL_Raspi_control_panel_B.DirectionSignal);
 
@@ -659,8 +631,8 @@ void SIL_Raspi_control_panel_step0(void) /* Sample time: [0.0s, 0.0s] */
     {                                  /* Sample time: [0.0s, 0.0s] */
       if ((rtmGetTFinal(SIL_Raspi_control_panel_M)!=-1) &&
           !((rtmGetTFinal(SIL_Raspi_control_panel_M)-
-             ((SIL_Raspi_control_panel_M->Timing.clockTick1) * 0.005)) >
-            ((SIL_Raspi_control_panel_M->Timing.clockTick1) * 0.005) *
+             ((SIL_Raspi_control_panel_M->Timing.clockTick1) * 0.0025)) >
+            ((SIL_Raspi_control_panel_M->Timing.clockTick1) * 0.0025) *
             (DBL_EPSILON))) {
         rtmSetErrorStatus(SIL_Raspi_control_panel_M, "Simulation finished");
       }
@@ -684,7 +656,7 @@ void SIL_Raspi_control_panel_step0(void) /* Sample time: [0.0s, 0.0s] */
 
     /* Update absolute time */
     /* The "clockTick1" counts the number of times the code of this task has
-     * been executed. The resolution of this integer timer is 0.005, which is the step size
+     * been executed. The resolution of this integer timer is 0.0025, which is the step size
      * of the task. Size of "clockTick1" ensures timer will not overflow during the
      * application lifespan selected.
      */
@@ -705,7 +677,7 @@ void SIL_Raspi_control_panel_derivatives(void)
 }
 
 /* Model step function for TID2 */
-void SIL_Raspi_control_panel_step2(void) /* Sample time: [0.1s, 0.0s] */
+void SIL_Raspi_control_panel_step2(void) /* Sample time: [0.005s, 0.0s] */
 {
   /* local block i/o variables */
   boolean_T rtb_GreaterThan;
@@ -769,7 +741,7 @@ void SIL_Raspi_control_panel_step2(void) /* Sample time: [0.1s, 0.0s] */
    *  Constant: '<S8>/Constant1'
    */
   rtb_LessThan = (SIL_Raspi_control_panel_B.FlapAngle >
-                  SIL_Raspi_control_panel_P.Constant1_Value_h);
+                  SIL_Raspi_control_panel_P.Constant1_Value);
 
   /* MATLAB Function: '<S5>/Flap Angle to Drag Coefficient' */
   SIL_Raspi_control_panel_B.Cd = ((SIL_Raspi_control_panel_B.FlapAngle *
@@ -781,17 +753,21 @@ void SIL_Raspi_control_panel_step2(void) /* Sample time: [0.1s, 0.0s] */
   SIL_Raspi_control_panel_DW.TmpRTBAtMATLABFunctionInport3_B =
     SIL_Raspi_control_panel_B.Cd;
 
+  /* Update for RateTransition: '<S1>/Flap Angle1' */
+  SIL_Raspi_control_panel_DW.FlapAngle1_Buffer0 =
+    SIL_Raspi_control_panel_B.FlapAngle;
+
   /* Update for RateTransition: '<S8>/TmpRTBAtNANDInport2' */
   SIL_Raspi_control_panel_DW.TmpRTBAtNANDInport2_Buffer0 = rtb_GreaterThan;
 
   /* Update for RateTransition: '<S8>/TmpRTBAtORInport2' */
   SIL_Raspi_control_panel_DW.TmpRTBAtORInport2_Buffer0 = rtb_LessThan;
   rtExtModeUpload(2, (real_T)((SIL_Raspi_control_panel_M->Timing.clockTick2) *
-    0.1));
+    0.005));
 
   /* Update absolute time */
   /* The "clockTick2" counts the number of times the code of this task has
-   * been executed. The resolution of this integer timer is 0.1, which is the step size
+   * been executed. The resolution of this integer timer is 0.005, which is the step size
    * of the task. Size of "clockTick2" ensures timer will not overflow during the
    * application lifespan selected.
    */
@@ -866,19 +842,19 @@ void SIL_Raspi_control_panel_initialize(void)
   rtmSetTPtr(SIL_Raspi_control_panel_M,
              &SIL_Raspi_control_panel_M->Timing.tArray[0]);
   rtmSetTFinal(SIL_Raspi_control_panel_M, 30.0);
-  SIL_Raspi_control_panel_M->Timing.stepSize0 = 0.005;
+  SIL_Raspi_control_panel_M->Timing.stepSize0 = 0.0025;
   rtmSetFirstInitCond(SIL_Raspi_control_panel_M, 1);
 
   /* External mode info */
-  SIL_Raspi_control_panel_M->Sizes.checksums[0] = (1256614354U);
-  SIL_Raspi_control_panel_M->Sizes.checksums[1] = (4189558511U);
-  SIL_Raspi_control_panel_M->Sizes.checksums[2] = (2396174820U);
-  SIL_Raspi_control_panel_M->Sizes.checksums[3] = (3932632382U);
+  SIL_Raspi_control_panel_M->Sizes.checksums[0] = (2677622246U);
+  SIL_Raspi_control_panel_M->Sizes.checksums[1] = (1744609380U);
+  SIL_Raspi_control_panel_M->Sizes.checksums[2] = (2237376769U);
+  SIL_Raspi_control_panel_M->Sizes.checksums[3] = (4034046813U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
     static RTWExtModeInfo rt_ExtModeInfo;
-    static const sysRanDType *systemRan[9];
+    static const sysRanDType *systemRan[7];
     SIL_Raspi_control_panel_M->extModeInfo = (&rt_ExtModeInfo);
     rteiSetSubSystemActiveVectorAddresses(&rt_ExtModeInfo, systemRan);
     systemRan[0] = &rtAlwaysEnabled;
@@ -886,11 +862,8 @@ void SIL_Raspi_control_panel_initialize(void)
     systemRan[2] = &rtAlwaysEnabled;
     systemRan[3] = &rtAlwaysEnabled;
     systemRan[4] = &rtAlwaysEnabled;
-    systemRan[5] = (sysRanDType *)
-      &SIL_Raspi_control_panel_DW.StepCounter_SubsysRanBC;
+    systemRan[5] = &rtAlwaysEnabled;
     systemRan[6] = &rtAlwaysEnabled;
-    systemRan[7] = &rtAlwaysEnabled;
-    systemRan[8] = &rtAlwaysEnabled;
     rteiSetModelMappingInfoPtr(SIL_Raspi_control_panel_M->extModeInfo,
       &SIL_Raspi_control_panel_M->SpecialInfo.mappingInfo);
     rteiSetChecksumsPtr(SIL_Raspi_control_panel_M->extModeInfo,
@@ -944,6 +917,10 @@ void SIL_Raspi_control_panel_initialize(void)
     SIL_Raspi_control_panel_B.TmpRTBAtMATLABFunctionInport3 =
       SIL_Raspi_control_panel_P.TmpRTBAtMATLABFunctionInport3_I;
 
+    /* Start for RateTransition: '<S1>/Flap Angle1' */
+    SIL_Raspi_control_panel_B.FlapAngledeg =
+      SIL_Raspi_control_panel_P.FlapAngle1_InitialCondition;
+
     /* Start for RateTransition: '<S8>/TmpRTBAtNANDInport2' */
     SIL_Raspi_control_panel_B.TmpRTBAtNANDInport2 =
       SIL_Raspi_control_panel_P.TmpRTBAtNANDInport2_InitialCond;
@@ -988,7 +965,6 @@ void SIL_Raspi_control_panel_initialize(void)
     MW_I2C_SetBusSpeed(SIL_Raspi_control_panel_DW.obj.MW_I2C_HANDLE,
                        SIL_Raspi_control_panel_DW.obj.BusSpeed);
     SIL_Raspi_control_panel_DW.obj.isSetupComplete = true;
-    SIL_Raspi_control_panel_PrevZCX.StepCounter_Trig_ZCE = UNINITIALIZED_ZCSIG;
 
     /* InitializeConditions for Integrator: '<S5>/Integrator' */
     if (rtmIsFirstInitCond(SIL_Raspi_control_panel_M)) {
@@ -1004,6 +980,10 @@ void SIL_Raspi_control_panel_initialize(void)
     SIL_Raspi_control_panel_DW.TmpRTBAtMATLABFunctionInport3_B =
       SIL_Raspi_control_panel_P.TmpRTBAtMATLABFunctionInport3_I;
 
+    /* InitializeConditions for RateTransition: '<S1>/Flap Angle1' */
+    SIL_Raspi_control_panel_DW.FlapAngle1_Buffer0 =
+      SIL_Raspi_control_panel_P.FlapAngle1_InitialCondition;
+
     /* InitializeConditions for RateTransition: '<S8>/TmpRTBAtNANDInport2' */
     SIL_Raspi_control_panel_DW.TmpRTBAtNANDInport2_Buffer0 =
       SIL_Raspi_control_panel_P.TmpRTBAtNANDInport2_InitialCond;
@@ -1011,13 +991,6 @@ void SIL_Raspi_control_panel_initialize(void)
     /* InitializeConditions for RateTransition: '<S8>/TmpRTBAtORInport2' */
     SIL_Raspi_control_panel_DW.TmpRTBAtORInport2_Buffer0 =
       SIL_Raspi_control_panel_P.TmpRTBAtORInport2_InitialCondit;
-
-    /* SystemInitialize for Triggered SubSystem: '<S4>/Step Counter' */
-    /* InitializeConditions for UnitDelay: '<S12>/Unit Delay' */
-    SIL_Raspi_control_panel_DW.UnitDelay_DSTATE =
-      SIL_Raspi_control_panel_P.UnitDelay_InitialCondition;
-
-    /* End of SystemInitialize for SubSystem: '<S4>/Step Counter' */
   }
 
   /* set "at time zero" to false */

@@ -2,7 +2,7 @@
 ## Makefile generated for Simulink model 'raspi_test'. 
 ## 
 ## Makefile     : raspi_test.mk
-## Generated on : Sun Jul 28 23:26:42 2019
+## Generated on : Mon Jul 29 09:08:28 2019
 ## MATLAB Coder version: 4.1 (R2018b)
 ## 
 ## Build Info:
@@ -182,7 +182,7 @@ BUILD_TYPE = "Top-Level Standalone Executable"
 ## INCLUDE PATHS
 ###########################################################################
 
-INCLUDES_BUILDINFO = -I$(START_DIR) -I$(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/linux/include -I$(START_DIR)/raspi_test_ert_rtw -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert -I$(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils -I$(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/include -I$(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server -I$(MATLAB_ROOT)/toolbox/target/codertarget/rtos/inc
+INCLUDES_BUILDINFO = -I$(START_DIR) -I$(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/target/shared/svd/include -I$(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server -I$(START_DIR)/raspi_test_ert_rtw -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert -I$(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils -I$(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/include -I$(MATLAB_ROOT)/toolbox/target/codertarget/rtos/inc
 
 INCLUDES = $(INCLUDES_BUILDINFO)
 
@@ -203,7 +203,7 @@ DEFINES = $(DEFINES_) $(DEFINES_BUILD_ARGS) $(DEFINES_IMPLIED) $(DEFINES_OPTS) $
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/linux/src/MW_gpio.c $(START_DIR)/raspi_test_ert_rtw/raspi_test.c $(START_DIR)/raspi_test_ert_rtw/raspi_test_data.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/ext_svr.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/updown.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/ext_work.c $(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils/rtiostream_utils.c $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server/MW_raspi_init.c $(MATLAB_ROOT)/toolbox/target/codertarget/rtos/src/linuxinitialize.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/rtiostream_interface.c $(MATLAB_ROOT)/rtw/c/src/rtiostream/rtiostreamtcpip/rtiostream_tcpip.c
+SRCS = $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/target/supportpackages/raspberrypi/src/MW_I2C.c $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server/devices.c $(START_DIR)/raspi_test_ert_rtw/raspi_test.c $(START_DIR)/raspi_test_ert_rtw/raspi_test_data.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/ext_svr.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/updown.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/ext_work.c $(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils/rtiostream_utils.c $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server/MW_raspi_init.c $(MATLAB_ROOT)/toolbox/target/codertarget/rtos/src/linuxinitialize.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/rtiostream_interface.c $(MATLAB_ROOT)/rtw/c/src/rtiostream/rtiostreamtcpip/rtiostream_tcpip.c
 
 MAIN_SRC = $(START_DIR)/raspi_test_ert_rtw/ert_main.c
 
@@ -213,7 +213,7 @@ ALL_SRCS = $(SRCS) $(MAIN_SRC)
 ## OBJECTS
 ###########################################################################
 
-OBJS = MW_gpio.c.o raspi_test.c.o raspi_test_data.c.o ext_svr.c.o updown.c.o ext_work.c.o rtiostream_utils.c.o MW_raspi_init.c.o linuxinitialize.c.o rtiostream_interface.c.o rtiostream_tcpip.c.o
+OBJS = MW_I2C.c.o devices.c.o raspi_test.c.o raspi_test_data.c.o ext_svr.c.o updown.c.o ext_work.c.o rtiostream_utils.c.o MW_raspi_init.c.o linuxinitialize.c.o rtiostream_interface.c.o rtiostream_tcpip.c.o
 
 MAIN_OBJ = ert_main.c.o
 
@@ -396,6 +396,30 @@ $(PRODUCT) : $(OBJS) $(PREBUILT_OBJS) $(MAIN_OBJ)
 	$(CPP) $(CPPFLAGS) -o $@ $<
 
 
+%.c.o : $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/target/supportpackages/raspberrypi/src/%.c
+	$(CC) $(CFLAGS) -o $@ $<
+
+
+%.s.o : $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/target/supportpackages/raspberrypi/src/%.s
+	$(AS) $(ASFLAGS) -o $@ $<
+
+
+%.cpp.o : $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/target/supportpackages/raspberrypi/src/%.cpp
+	$(CPP) $(CPPFLAGS) -o $@ $<
+
+
+%.c.o : $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server/%.c
+	$(CC) $(CFLAGS) -o $@ $<
+
+
+%.s.o : $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server/%.s
+	$(AS) $(ASFLAGS) -o $@ $<
+
+
+%.cpp.o : $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server/%.cpp
+	$(CPP) $(CPPFLAGS) -o $@ $<
+
+
 %.c.o : $(START_DIR)/raspi_test_ert_rtw/%.c
 	$(CC) $(CFLAGS) -o $@ $<
 
@@ -454,14 +478,6 @@ $(PRODUCT) : $(OBJS) $(PREBUILT_OBJS) $(MAIN_OBJ)
 
 %.cpp.o : $(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils/%.cpp
 	$(CPP) $(CPPFLAGS) -o $@ $<
-
-
-MW_gpio.c.o : $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/linux/src/MW_gpio.c
-	$(CC) $(CFLAGS) -o $@ $<
-
-
-MW_raspi_init.c.o : $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server/MW_raspi_init.c
-	$(CC) $(CFLAGS) -o $@ $<
 
 
 linuxinitialize.c.o : $(MATLAB_ROOT)/toolbox/target/codertarget/rtos/src/linuxinitialize.c

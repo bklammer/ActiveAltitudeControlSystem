@@ -2,7 +2,7 @@
 ## Makefile generated for Simulink model 'SIL_Raspi_control_panel'. 
 ## 
 ## Makefile     : SIL_Raspi_control_panel.mk
-## Generated on : Sun Jul 28 23:35:55 2019
+## Generated on : Mon Jul 29 09:15:34 2019
 ## MATLAB Coder version: 4.1 (R2018b)
 ## 
 ## Build Info:
@@ -202,7 +202,7 @@ DEFINES = $(DEFINES_) $(DEFINES_BUILD_ARGS) $(DEFINES_OPTS) $(DEFINES_SKIPFORSIL
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/target/supportpackages/raspberrypi/src/MW_I2C.c $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server/devices.c $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/linux/src/MW_gpio.c $(START_DIR)/SIL_Raspi_control_panel_ert_rtw/SIL_Raspi_control_panel.c $(START_DIR)/SIL_Raspi_control_panel_ert_rtw/SIL_Raspi_control_panel_data.c $(START_DIR)/SIL_Raspi_control_panel_ert_rtw/rtGetInf.c $(START_DIR)/SIL_Raspi_control_panel_ert_rtw/rtGetNaN.c $(START_DIR)/SIL_Raspi_control_panel_ert_rtw/rt_nonfinite.c $(START_DIR)/SIL_Raspi_control_panel_ert_rtw/rt_zcfcn.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/ext_svr.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/updown.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/ext_work.c $(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils/rtiostream_utils.c $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server/MW_raspi_init.c $(MATLAB_ROOT)/toolbox/target/codertarget/rtos/src/linuxinitialize.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/rtiostream_interface.c $(MATLAB_ROOT)/rtw/c/src/rtiostream/rtiostreamtcpip/rtiostream_tcpip.c
+SRCS = $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/target/supportpackages/raspberrypi/src/MW_I2C.c $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server/devices.c $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/linux/src/MW_gpio.c $(START_DIR)/SIL_Raspi_control_panel_ert_rtw/SIL_Raspi_control_panel.c $(START_DIR)/SIL_Raspi_control_panel_ert_rtw/SIL_Raspi_control_panel_data.c $(START_DIR)/SIL_Raspi_control_panel_ert_rtw/rtGetInf.c $(START_DIR)/SIL_Raspi_control_panel_ert_rtw/rtGetNaN.c $(START_DIR)/SIL_Raspi_control_panel_ert_rtw/rt_nonfinite.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/ext_svr.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/updown.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/ext_work.c $(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils/rtiostream_utils.c $(MATLAB_WORKSPACE)/C/ProgramData/MATLAB/SupportPackages/R2018b/toolbox/realtime/targets/raspi/server/MW_raspi_init.c $(MATLAB_ROOT)/toolbox/target/codertarget/rtos/src/linuxinitialize.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/rtiostream_interface.c $(MATLAB_ROOT)/rtw/c/src/rtiostream/rtiostreamtcpip/rtiostream_tcpip.c
 
 MAIN_SRC = $(START_DIR)/SIL_Raspi_control_panel_ert_rtw/ert_main.c
 
@@ -212,7 +212,7 @@ ALL_SRCS = $(SRCS) $(MAIN_SRC)
 ## OBJECTS
 ###########################################################################
 
-OBJS = MW_I2C.c.o devices.c.o MW_gpio.c.o SIL_Raspi_control_panel.c.o SIL_Raspi_control_panel_data.c.o rtGetInf.c.o rtGetNaN.c.o rt_nonfinite.c.o rt_zcfcn.c.o ext_svr.c.o updown.c.o ext_work.c.o rtiostream_utils.c.o MW_raspi_init.c.o linuxinitialize.c.o rtiostream_interface.c.o rtiostream_tcpip.c.o
+OBJS = MW_I2C.c.o devices.c.o MW_gpio.c.o SIL_Raspi_control_panel.c.o SIL_Raspi_control_panel_data.c.o rtGetInf.c.o rtGetNaN.c.o rt_nonfinite.c.o ext_svr.c.o updown.c.o ext_work.c.o rtiostream_utils.c.o MW_raspi_init.c.o linuxinitialize.c.o rtiostream_interface.c.o rtiostream_tcpip.c.o
 
 MAIN_OBJ = ert_main.c.o
 

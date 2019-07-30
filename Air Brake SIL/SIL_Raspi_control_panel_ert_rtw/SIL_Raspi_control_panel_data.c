@@ -8,9 +8,9 @@
  *
  * Code generated for Simulink model 'SIL_Raspi_control_panel'.
  *
- * Model version                  : 1.61
+ * Model version                  : 1.68
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Sun Jul 28 23:38:10 2019
+ * C/C++ source code generated on : Mon Jul 29 13:33:01 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -1004,30 +1004,10 @@ P_SIL_Raspi_control_panel_T SIL_Raspi_control_panel_P = {
     249.20600000000002, 248.55700000000002, 247.90800000000002,
     247.25900000000001, 246.61 },
 
-  /* Expression: 0.1
+  /* Expression: 0.005
    * Referenced by: '<S4>/I2C Master Read'
    */
-  0.1,
-
-  /* Expression: 0
-   * Referenced by: '<S12>/Step Count'
-   */
-  0.0,
-
-  /* Expression: -0.5
-   * Referenced by: '<S12>/Constant1'
-   */
-  -0.5,
-
-  /* Expression: 2
-   * Referenced by: '<S12>/Constant'
-   */
-  2.0,
-
-  /* Expression: 0
-   * Referenced by: '<S12>/Unit Delay'
-   */
-  0.0,
+  0.005,
 
   /* Expression: [0 0]
    * Referenced by: '<S5>/Initial Conditions'
@@ -1039,30 +1019,35 @@ P_SIL_Raspi_control_panel_T SIL_Raspi_control_panel_P = {
    */
   0.0,
 
-  /* Expression: 1
-   * Referenced by: '<S2>/Constant'
-   */
-  1.0,
-
-  /* Expression: 6523
+  /* Expression: 300
    * Referenced by: '<S2>/Proportional Gain'
    */
-  6523.0,
+  300.0,
 
-  /* Expression: 2950
+  /* Expression: 3050
    * Referenced by: '<S1>/Target Altitude (m) '
    */
-  2950.0,
+  3050.0,
 
   /* Expression: 15.72
    * Referenced by: '<S2>/Constant5'
    */
   15.72,
 
+  /* Expression: 1
+   * Referenced by: '<S2>/Constant'
+   */
+  1.0,
+
   /* Expression: 240
    * Referenced by: '<S2>/Ma 0.7'
    */
   240.0,
+
+  /* Expression: 0
+   * Referenced by: synthesized block
+   */
+  0.0,
 
   /* Expression: 0
    * Referenced by: '<S7>/Constant'
@@ -1099,15 +1084,15 @@ P_SIL_Raspi_control_panel_T SIL_Raspi_control_panel_P = {
    */
   -0.01,
 
-  /* Expression: 2.962e4
+  /* Expression: 2.991e4
    * Referenced by: '<S4>/ '
    */
-  29620.0,
+  29910.0,
 
-  /* Expression: 1.87e4
+  /* Expression: 1.88e4
    * Referenced by: '<S4>/   '
    */
-  18700.0,
+  18800.0,
 
   /* Expression: 77
    * Referenced by: '<S4>/  '

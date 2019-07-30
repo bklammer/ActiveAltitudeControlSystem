@@ -28,28 +28,24 @@
     ;%
     ;% Auto data (raspi_test_P)
     ;%
-      section.nData     = 5;
-      section.data(5)  = dumData; %prealloc
+      section.nData     = 4;
+      section.data(4)  = dumData; %prealloc
       
-	  ;% raspi_test_P.DIR_Value
+	  ;% raspi_test_P.I2CMasterRead_SampleTime
 	  section.data(1).logicalSrcIdx = 0;
 	  section.data(1).dtTransOffset = 0;
 	
-	  ;% raspi_test_P.STEP_Amp
+	  ;% raspi_test_P._Value
 	  section.data(2).logicalSrcIdx = 1;
 	  section.data(2).dtTransOffset = 1;
 	
-	  ;% raspi_test_P.STEP_Period
+	  ;% raspi_test_P._Value_b
 	  section.data(3).logicalSrcIdx = 2;
 	  section.data(3).dtTransOffset = 2;
 	
-	  ;% raspi_test_P.STEP_Duty
+	  ;% raspi_test_P._Value_i
 	  section.data(4).logicalSrcIdx = 3;
 	  section.data(4).dtTransOffset = 3;
-	
-	  ;% raspi_test_P.STEP_PhaseDelay
-	  section.data(5).logicalSrcIdx = 4;
-	  section.data(5).dtTransOffset = 4;
 	
       nTotData = nTotData + section.nData;
       paramMap.sections(1) = section;
@@ -96,12 +92,16 @@
     ;%
     ;% Auto data (raspi_test_B)
     ;%
-      section.nData     = 1;
-      section.data(1)  = dumData; %prealloc
+      section.nData     = 2;
+      section.data(2)  = dumData; %prealloc
       
-	  ;% raspi_test_B.STEP
+	  ;% raspi_test_B.CastToDouble
 	  section.data(1).logicalSrcIdx = 0;
 	  section.data(1).dtTransOffset = 0;
+	
+	  ;% raspi_test_B.FlapAngle
+	  section.data(2).logicalSrcIdx = 1;
+	  section.data(2).dtTransOffset = 1;
 	
       nTotData = nTotData + section.nData;
       sigMap.sections(1) = section;
@@ -125,7 +125,7 @@
   ;%*******************
       
     nTotData      = 0; %add to this count as we go
-    nTotSects     = 3;
+    nTotSects     = 2;
     sectIdxOffset = 1;
     
     ;%
@@ -148,41 +148,30 @@
     ;%
     ;% Auto data (raspi_test_DW)
     ;%
-      section.nData     = 2;
-      section.data(2)  = dumData; %prealloc
+      section.nData     = 1;
+      section.data(1)  = dumData; %prealloc
       
 	  ;% raspi_test_DW.obj
 	  section.data(1).logicalSrcIdx = 0;
 	  section.data(1).dtTransOffset = 0;
 	
-	  ;% raspi_test_DW.obj_f
-	  section.data(2).logicalSrcIdx = 1;
-	  section.data(2).dtTransOffset = 1;
-	
       nTotData = nTotData + section.nData;
       dworkMap.sections(1) = section;
       clear section
       
-      section.nData     = 1;
-      section.data(1)  = dumData; %prealloc
+      section.nData     = 2;
+      section.data(2)  = dumData; %prealloc
       
-	  ;% raspi_test_DW.Scope3_PWORK.LoggedData
-	  section.data(1).logicalSrcIdx = 2;
+	  ;% raspi_test_DW.FlapAngle_PWORK.LoggedData
+	  section.data(1).logicalSrcIdx = 1;
 	  section.data(1).dtTransOffset = 0;
+	
+	  ;% raspi_test_DW.Scope2_PWORK.LoggedData
+	  section.data(2).logicalSrcIdx = 2;
+	  section.data(2).dtTransOffset = 1;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(2) = section;
-      clear section
-      
-      section.nData     = 1;
-      section.data(1)  = dumData; %prealloc
-      
-	  ;% raspi_test_DW.clockTickCounter
-	  section.data(1).logicalSrcIdx = 3;
-	  section.data(1).dtTransOffset = 0;
-	
-      nTotData = nTotData + section.nData;
-      dworkMap.sections(3) = section;
       clear section
       
     
@@ -211,8 +200,8 @@
   ;%
 
 
-  targMap.checksum0 = 4222602906;
-  targMap.checksum1 = 242227106;
-  targMap.checksum2 = 1962799769;
-  targMap.checksum3 = 3569013962;
+  targMap.checksum0 = 3517670838;
+  targMap.checksum1 = 4117695739;
+  targMap.checksum2 = 449224543;
+  targMap.checksum3 = 3292989292;
 

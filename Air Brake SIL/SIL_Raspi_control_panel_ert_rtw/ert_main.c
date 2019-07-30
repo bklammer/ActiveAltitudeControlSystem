@@ -8,9 +8,9 @@
  *
  * Code generated for Simulink model 'SIL_Raspi_control_panel'.
  *
- * Model version                  : 1.61
+ * Model version                  : 1.68
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Sun Jul 28 23:38:10 2019
+ * C/C++ source code generated on : Mon Jul 29 13:33:01 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -197,7 +197,7 @@ int main(int argc, char **argv)
   rtERTExtModeStartMsg();
 
   /* Call RTOS Initialization function */
-  myRTOSInit(0.005, 1);
+  myRTOSInit(0.0025, 1);
 
   /* Wait for stop semaphore */
   sem_wait(&stopSem);

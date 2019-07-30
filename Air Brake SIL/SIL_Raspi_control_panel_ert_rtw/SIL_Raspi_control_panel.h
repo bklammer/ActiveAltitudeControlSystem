@@ -8,9 +8,9 @@
  *
  * Code generated for Simulink model 'SIL_Raspi_control_panel'.
  *
- * Model version                  : 1.61
+ * Model version                  : 1.68
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Sun Jul 28 23:38:10 2019
+ * C/C++ source code generated on : Mon Jul 29 13:33:01 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -27,7 +27,6 @@
 #ifndef SIL_Raspi_control_panel_COMMON_INCLUDES_
 # define SIL_Raspi_control_panel_COMMON_INCLUDES_
 #include "rtwtypes.h"
-#include "zero_crossing_types.h"
 #include "rtw_extmode.h"
 #include "sysran_types.h"
 #include "rtw_continuous.h"
@@ -44,7 +43,6 @@
 #include "multiword_types.h"
 #include "rtGetInf.h"
 #include "rt_nonfinite.h"
-#include "rt_zcfcn.h"
 
 /* Macros for accessing real-time model data structure */
 #ifndef rtmGetContStateDisabled
@@ -188,6 +186,7 @@ typedef struct {
   real_T InitialConditions[2];         /* '<S5>/Initial Conditions' */
   real_T TmpRTBAtMATLABFunctionInport3;/* '<S5>/Flap Angle to Drag Coefficient' */
   real_T ControlSignaluntisofstepperangl;/* '<S2>/Multiply' */
+  real_T FlapAngledeg;                 /* '<S1>/Motor and Gearbox Transfer Function' */
   real_T Howfasttostep;                /* '<S7>/Step Frequency' */
   real_T Multiply;                     /* '<S8>/Multiply' */
   real_T FlapAngle;                    /* '<S11>/Multiply1' */
@@ -210,11 +209,11 @@ typedef struct {
   codertarget_raspi_internal_I2_T obj; /* '<S4>/I2C Master Read' */
   codertarget_linux_blocks_Digi_T obj_k;/* '<S10>/Digital Write' */
   codertarget_linux_blocks_Digi_T obj_f;/* '<S9>/Digital Write' */
-  real_T UnitDelay_DSTATE;             /* '<S12>/Unit Delay' */
   real_T TmpRTBAtMATLABFunctionInport3_B;/* synthesized block */
+  real_T FlapAngle1_Buffer0;           /* synthesized block */
   struct {
-    void *LoggedData[3];
-  } Scope_PWORK;                       /* '<S2>/Scope' */
+    void *LoggedData[4];
+  } Display_PWORK;                     /* '<S1>/Display' */
 
   struct {
     void *LoggedData;
@@ -230,11 +229,10 @@ typedef struct {
 
   struct {
     void *LoggedData;
-  } Scope_PWORK_g;                     /* '<S4>/Scope' */
+  } Scope_PWORK;                       /* '<S4>/Scope' */
 
   int32_T clockTickCounter;            /* '<S7>/Step Frequency' */
   int_T Integrator_IWORK;              /* '<S5>/Integrator' */
-  int8_T StepCounter_SubsysRanBC;      /* '<S4>/Step Counter' */
   boolean_T TmpRTBAtNANDInport2_Buffer0;/* synthesized block */
   boolean_T TmpRTBAtORInport2_Buffer0; /* synthesized block */
 } DW_SIL_Raspi_control_panel_T;
@@ -253,11 +251,6 @@ typedef struct {
 typedef struct {
   boolean_T Integrator_CSTATE[2];      /* '<S5>/Integrator' */
 } XDis_SIL_Raspi_control_panel_T;
-
-/* Zero-crossing (trigger) state */
-typedef struct {
-  ZCSigState StepCounter_Trig_ZCE;     /* '<S4>/Step Counter' */
-} PrevZCX_SIL_Raspi_control_pan_T;
 
 #ifndef ODE3_INTG
 #define ODE3_INTG
@@ -281,20 +274,8 @@ struct P_SIL_Raspi_control_panel_T_ {
   real_T INTAB4[666];                  /* Variable: INTAB4
                                         * Referenced by: '<S5>/Constant4'
                                         */
-  real_T I2CMasterRead_SampleTime;     /* Expression: 0.1
+  real_T I2CMasterRead_SampleTime;     /* Expression: 0.005
                                         * Referenced by: '<S4>/I2C Master Read'
-                                        */
-  real_T StepCount_Y0;                 /* Expression: 0
-                                        * Referenced by: '<S12>/Step Count'
-                                        */
-  real_T Constant1_Value;              /* Expression: -0.5
-                                        * Referenced by: '<S12>/Constant1'
-                                        */
-  real_T Constant_Value;               /* Expression: 2
-                                        * Referenced by: '<S12>/Constant'
-                                        */
-  real_T UnitDelay_InitialCondition;   /* Expression: 0
-                                        * Referenced by: '<S12>/Unit Delay'
                                         */
   real_T InitialConditions_Value[2];   /* Expression: [0 0]
                                         * Referenced by: '<S5>/Initial Conditions'
@@ -302,20 +283,23 @@ struct P_SIL_Raspi_control_panel_T_ {
   real_T TmpRTBAtMATLABFunctionInport3_I;/* Expression: 0
                                           * Referenced by: synthesized block
                                           */
-  real_T Constant_Value_a;             /* Expression: 1
-                                        * Referenced by: '<S2>/Constant'
-                                        */
-  real_T ProportionalGain_Value;       /* Expression: 6523
+  real_T ProportionalGain_Value;       /* Expression: 300
                                         * Referenced by: '<S2>/Proportional Gain'
                                         */
-  real_T TargetAltitudem_Value;        /* Expression: 2950
+  real_T TargetAltitudem_Value;        /* Expression: 3050
                                         * Referenced by: '<S1>/Target Altitude (m) '
                                         */
   real_T Constant5_Value;              /* Expression: 15.72
                                         * Referenced by: '<S2>/Constant5'
                                         */
+  real_T Constant_Value;               /* Expression: 1
+                                        * Referenced by: '<S2>/Constant'
+                                        */
   real_T Ma07_Value;                   /* Expression: 240
                                         * Referenced by: '<S2>/Ma 0.7'
+                                        */
+  real_T FlapAngle1_InitialCondition;  /* Expression: 0
+                                        * Referenced by: synthesized block
                                         */
   real_T Constant_Value_m;             /* Expression: 0
                                         * Referenced by: '<S7>/Constant'
@@ -338,10 +322,10 @@ struct P_SIL_Raspi_control_panel_T_ {
   real_T Constant5_Value_k;            /* Expression: -0.01
                                         * Referenced by: '<S5>/Constant5'
                                         */
-  real_T _Value;                       /* Expression: 2.962e4
+  real_T _Value;                       /* Expression: 2.991e4
                                         * Referenced by: '<S4>/ '
                                         */
-  real_T _Value_d;                     /* Expression: 1.87e4
+  real_T _Value_d;                     /* Expression: 1.88e4
                                         * Referenced by: '<S4>/   '
                                         */
   real_T _Value_k;                     /* Expression: 77
@@ -353,7 +337,7 @@ struct P_SIL_Raspi_control_panel_T_ {
   real_T Constant_Value_f;             /* Expression: 5
                                         * Referenced by: '<S8>/Constant'
                                         */
-  real_T Constant1_Value_h;            /* Expression: 5
+  real_T Constant1_Value;              /* Expression: 5
                                         * Referenced by: '<S8>/Constant1'
                                         */
   boolean_T TmpRTBAtNANDInport2_InitialCond;/* Computed Parameter: TmpRTBAtNANDInport2_InitialCond
@@ -442,11 +426,6 @@ extern X_SIL_Raspi_control_panel_T SIL_Raspi_control_panel_X;
 /* Block states (default storage) */
 extern DW_SIL_Raspi_control_panel_T SIL_Raspi_control_panel_DW;
 
-/* External data declarations for dependent source files */
-
-/* Zero-crossing (trigger) state */
-extern PrevZCX_SIL_Raspi_control_pan_T SIL_Raspi_control_panel_PrevZCX;
-
 /* External function called from main */
 extern void SIL_Raspi_control_panel_SetEventsForThisBaseStep(boolean_T
   *eventFlags);
@@ -461,12 +440,6 @@ extern void SIL_Raspi_control_panel_terminate(void);
 
 /* Real-time Model object */
 extern RT_MODEL_SIL_Raspi_control_pa_T *const SIL_Raspi_control_panel_M;
-
-/*-
- * These blocks were eliminated from the model due to optimizations:
- *
- * Block '<S4>/Memory' : Unused code path elimination
- */
 
 /*-
  * The generated code includes comments that allow you to trace directly
