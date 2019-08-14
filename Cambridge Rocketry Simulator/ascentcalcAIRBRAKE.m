@@ -308,7 +308,7 @@ end
         
         
         %%%%%% AIRBRAKE CALCULATIONS %%%%%%%
-        if Ma<0.7 && Ti == 0 % Air brakes full on if coasting and going slow enough
+        if Ma<0 && Ti == 0 % Air brakes full on if coasting and going slow enough
             Cd = 0.84281; % Results from CFD
             Cd = 0.3219375 + 1*0.00451612/0.010751315458748; % Results from CFD for body plus adjustment because flaps are smaller now
         else
@@ -430,6 +430,8 @@ end
         zd(11)=Ttheta;
         zd(12)=Tphi;
         zd(13)=Tpsi;
+        
+        if tt > 
     end
 
 end

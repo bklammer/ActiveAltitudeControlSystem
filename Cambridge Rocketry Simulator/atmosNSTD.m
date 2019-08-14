@@ -1,8 +1,8 @@
 %atmosNSTD calculates atmospheric properties
 
 % Inputs/Constants
-T0 = 309; % [K] MVP-2 data
-P0 = 86037; % [Pa] MVP-2 data
+T0 = 295; % [K] MVP-2 data
+P0 = 86243; % [Pa] MVP-2 data
 g = 9.80665; % [m/s^2] acceleration due to gravity
 k = 1.4; % [] specific heat ratio for dry air
 R = 287.0531; % [J/kgK] gas constant for dry air
